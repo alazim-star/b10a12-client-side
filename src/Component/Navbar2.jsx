@@ -1,62 +1,159 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../AuthProvider/AuthProvider';
+
+
+
 
 const Navbar2 = () => {
-    return (
-        <div className="navbar bg-base-100">
+  const { loading, user, signOutUser } = useContext(AuthContext);
+  const [scrolled, setScrolled] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => console.log("Sign out successful"))
+      .catch((error) => console.error("Error:", error.message));
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const links = (
+    <>
+ 
+      <NavLink
+        to="/"
+        className="hover:text-yellow-400 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 p-3 transition mx-4 border-b-4 border-yellow-400"
+      >
+        Home
+      </NavLink>
+      <NavLink
+        to="/allScholarship"
+        className="hover:text-yellow-400 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 p-3 transition mx-4 border-b-4 border-yellow-400"
+      >
+        All Scholarship
+      </NavLink>
+      <NavLink
+        to="/dashboard"
+        className="hover:text-yellow-400 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 p-3 transition mx-4 border-b-4 border-yellow-400"
+      >
+      Dashboard
+      </NavLink>
+
+      <NavLink
+        to="/addScholarship"
+        className="hover:text-yellow-400 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 p-3 transition mx-4 border-b-4 border-yellow-400"
+      >
+        Add Scholarship
+      </NavLink>
+    </>
+  );
+
+  return (
+
+
+  
+    <nav
+      className={`${
+        scrolled
+          ? "backdrop-blur-sm bg-white/60 text-black"
+          : "bg-[#111827] text-white"
+      } w-full sticky top-0 z-50 transition-all duration-300`}
+    >
+      <div className="navbar h-20 px-4 lg:px-10">
         <div className="navbar-start">
+          {/* Mobile Dropdown */}
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost lg:hidden"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor">
+                stroke="currentColor"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16" />
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
               </svg>
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-              <li><a>Item 1</a></li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li><a>Submenu 1</a></li>
-                  <li><a>Submenu 2</a></li>
-                </ul>
-              </li>
-              <li><a>Item 3</a></li>
+              className="menu menu-sm dropdown-content text-white bg-[#111827] rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            >
+              {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          {/* Logo and Name */}
+          <div className="flex items-center">
+            <img
+              className="w-10 h-10 lg:w-24 lg:h-24 "
+              src="https://i.ibb.co.com/1TQ6L8Y/Blue-Modern-Free-Academy-Logo-1-removebg-preview.png"
+              alt="Logo"
+            />
+            <p className="uppercase lg:text-2xl font-bold">Scholar</p>
+          </div>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li><a>Item 1</a></li>
-            <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li><a>Submenu 1</a></li>
-                  <li><a>Submenu 2</a></li>
-                </ul>
-              </details>
-            </li>
-            <li><a>Item 3</a></li>
-          </ul>
+        {/* Desktop Links */}
+        <div className="navbar hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
+        {/* Login/Logout Section */}
+        <div className="items-center">
+          {loading ? (
+           <p>Loading...</p>
+          ) : user ? (
+            <div className="flex items-center lg:space-x-4">
+              {user.photoURL && (
+                <img
+                  src={user.photoURL}
+                  alt="User Profile"
+                  className="w-10 h-10 rounded-full border border-white"
+                />
+              )}
+              <p className="text-sm lg:text-md text-white">
+                Welcome, <span className="font-bold">{user.email}</span>
+              </p>
+              <button
+                onClick={handleSignOut}
+                className="hover:text-yellow-400 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 lg:p-3 p-2 transition border-b-4 border-yellow-400"
+              >
+                SignOut
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="hover:text-yellow-400 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 p-3 transition border-b-4 border-yellow-400"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
-          
-      
-    );
+    </nav>
+   
+
+  );
 };
 
 export default Navbar2;
