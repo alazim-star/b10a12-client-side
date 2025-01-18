@@ -35,6 +35,12 @@ import AdminRoutes from './Pages/DashBoard/Admin/AdminRoutes';
 import ManageScholarships from './Pages/DashBoard/Modaretor/ManageScholarships';
 import MyReview from './Pages/DashBoard/User/MyReview';
 import ErrorPage from './ErrorPage/ErrorPage';
+import MyProfileModerator from './Pages/DashBoard/Modaretor/MyProfileModerator';
+import ManageReview from './Pages/DashBoard/Admin/ManageReview';
+import ManageAppliedApplication from './Pages/DashBoard/Admin/ManageAppliedApplication';
+import AllReviewsModerator from './Pages/DashBoard/Modaretor/AllReviewsModerator';
+import AllAppliedScholarship from './Pages/DashBoard/Modaretor/AllAppliedScholarship';
+import AddScholarshipModerator from './Pages/DashBoard/Modaretor/AddScholarshipModerator';
 
 
 
@@ -105,7 +111,7 @@ const router = createBrowserRouter([
 
 // admin dashboard
 {
-  path: "addScholarship",
+  path: "addScholarshipAdmin",
   element: <AdminRoutes>
     <ScholarshipAdd></ScholarshipAdd>
   </AdminRoutes>,
@@ -117,7 +123,7 @@ const router = createBrowserRouter([
   </AdminRoutes>,
 },
 {
-  path: "manageScholarships",
+  path: "manageScholarshipsAdmin",
   element: <AdminRoutes>
     <ManageScholarships></ManageScholarships>
   </AdminRoutes>,
@@ -128,11 +134,23 @@ const router = createBrowserRouter([
     <AdminProfile></AdminProfile>
   </AdminRoutes>,
 },
+{
+  path: "manageReview",
+  element: <AdminRoutes>
+    <ManageReview></ManageReview>
+  </AdminRoutes>,
+},
+{
+  path: "manageAppliedApplication",
+  element: <AdminRoutes>
+    <ManageAppliedApplication></ManageAppliedApplication>
+  </AdminRoutes>,
+},
 
 
 // Moderator 
 {
-  path: "manageScholarships",
+  path: "manageScholarshipsModerator",
   element: <ManageScholarships></ManageScholarships>,
 },
 {
@@ -140,6 +158,29 @@ const router = createBrowserRouter([
   element: 
     <ScholarshipAdd></ScholarshipAdd>,
 
+},
+{
+  path: "myProfileModerator",
+  element: <MyProfileModerator></MyProfileModerator>,
+    
+
+},
+{
+  path: "allReviewsModerator",
+  element: <AllReviewsModerator></AllReviewsModerator>,
+    
+
+},
+{
+  path: "allAppliedScholarship",
+  element: <AllAppliedScholarship></AllAppliedScholarship>,
+    
+
+},
+{
+  path: "addScholarshipModerator",
+  element: <AddScholarshipModerator></AddScholarshipModerator>,
+    
 },
 
 

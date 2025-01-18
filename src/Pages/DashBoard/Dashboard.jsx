@@ -30,12 +30,12 @@ const [isAdmin]=useAdmin()
 </li>
 <li className='p-2'>
 
-<NavLink to='/dashboard/addScholarship'>
+<NavLink to='/dashboard/addScholarshipAdmin'>
 <FaUtensils></FaUtensils>Add Scholarship</NavLink>
 </li>
 <li className='p-2'>
 
-<NavLink to='/dashboard/manageScholarships'>
+<NavLink to='/dashboard/manageScholarshipsAdmin'>
 <FaList></FaList>Manage Scholarship
 </NavLink>
 </li>
@@ -91,17 +91,17 @@ const [isAdmin]=useAdmin()
 <div className="divider divider-neutral">Moderator</div>
                     <li className='p-2'>
 
-<NavLink to='/dashboard/myProfile'>
+<NavLink to='/dashboard/myProfileModerator'>
 <FaHome></FaHome>My Profile</NavLink>
 </li>
 <li className='p-2'>
 
-<NavLink to='/dashboard/manageScholarships'>
+<NavLink to='/dashboard/manageScholarshipsModerator'>
 Manage Scholarships</NavLink>
 </li>
 <li className='p-2'>
 
-<NavLink to='/dashboard/allReviews'>
+<NavLink to='/dashboard/allReviewsModerator'>
 <FaCalendar></FaCalendar>All reviews</NavLink>
 </li>
 <li className='p-2'>
@@ -111,7 +111,7 @@ Manage Scholarships</NavLink>
 </li>
 <li className='p-2'>
 
-<NavLink to='/dashboard/addScholarship'>
+<NavLink to='/dashboard/addScholarshipModerator'>
 <FaList></FaList>Add Scholarship
 </NavLink>
 </li>

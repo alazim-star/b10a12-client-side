@@ -2,14 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import axios from "axios";
-import { FaEye } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const MyApplication = () => {
   const { user } = useContext(AuthContext); // Access user context
   const [applications, setApplications] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredApplications, setFilteredApplications] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reviewModalOpen, setReviewModalOpen] = useState(false);
   const [selectedApplication, setSelectedApplication] = useState(null);
@@ -17,8 +14,8 @@ const MyApplication = () => {
   const [comment, setComment] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+  const [status, setStatus] = useState(""); // For handling application status
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
 
   // Fetch all applications for the logged-in user
   useEffect(() => {
@@ -27,13 +24,12 @@ const MyApplication = () => {
         .get(`http://localhost:5000/applications/${user?.email}`)
         .then((res) => {
           setApplications(res.data);
-          setFilteredApplications(res.data);
         })
         .catch((err) => console.error("Error fetching applications:", err));
     }
   }, [user]);
 
-  // Handle Delete/Cancel Scholarship
+  // Handle Delete/Cancel Application
   const handleCancel = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -45,17 +41,15 @@ const MyApplication = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/allScholarship/${id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.deletedCount > 0) {
-              Swal.fire("Deleted!", "The scholarship has been deleted.", "success");
-              setData((prevData) => prevData.filter((scholarship) => scholarship._id !== id));
+        axios
+          .delete(`http://localhost:5000/applications/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire("Deleted!", "The application has been deleted.", "success");
+              setApplications((prev) => prev.filter((app) => app._id !== id));
             }
           })
-          .catch((err) => console.error("Error cancelling scholarship:", err));
+          .catch((err) => console.error("Error cancelling application:", err));
       }
     });
   };
@@ -63,27 +57,23 @@ const MyApplication = () => {
   // Handle Update Application
   const handleUpdateApplication = (e) => {
     e.preventDefault();
-
     const updatedData = {
       ApplicantsPhoneNumber: phoneNumber,
       ApplicantAddress: address,
+      status,
     };
 
     axios
       .put(`http://localhost:5000/applications/${selectedApplication._id}`, updatedData)
-      .then((response) => {
-        if (response.data.modifiedCount > 0) {
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
           Swal.fire("Updated!", "Your application has been updated.", "success");
-          setIsModalOpen(false);
-          setApplications((prevApplications) =>
-            prevApplications.map((scholarship) =>
-              scholarship._id === selectedApplication._id
-                ? { ...scholarship, ...updatedData }
-                : scholarship
+          setApplications((prev) =>
+            prev.map((app) =>
+              app._id === selectedApplication._id ? { ...app, ...updatedData } : app
             )
           );
-        } else {
-          Swal.fire("Error", "Unable to update the application.", "error");
+          setIsModalOpen(false);
         }
       })
       .catch((err) => {
@@ -95,28 +85,23 @@ const MyApplication = () => {
   // Handle Review Submit
   const handleReviewSubmit = (e) => {
     e.preventDefault();
-
     const reviewData = {
       scholarshipId: selectedApplication._id,
-      rating: rating,
-      comment: comment,
+      rating,
+      comment,
       email: user.email,
       universityName: selectedApplication.universityName,
-      timestamp: new Date().toISOString(),
+      scholarshipName:selectedApplication.scholarshipName,
+      timestamp: new Date().toISOString()
+
     };
 
-    fetch("http://localhost:5000/reviews", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(reviewData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
+    axios
+      .post("http://localhost:5000/reviews", reviewData)
+      .then((res) => {
+        if (res.data.insertedId) {
           Swal.fire("Success", "Review added successfully!", "success");
           setReviewModalOpen(false);
-        } else {
-          Swal.fire("Error", "Failed to add the review. Try again.", "error");
         }
       })
       .catch(() => {
@@ -124,101 +109,83 @@ const MyApplication = () => {
       });
   };
 
-  // Filter applications based on the search term
-  const handleSearch = () => {
-    const filtered = applications.filter((scholarship) =>
-      scholarship.universityName.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredApplications(filtered);
-  };
-
-  // Reset search filter
-  const handleReset = () => {
-    setFilteredApplications(applications);
-    setSearchTerm("");
-  };
-
  // Fetch scholarships from the backend
- useEffect(() => {
-  fetch("http://localhost:5000/allScholarship")
-    .then((res) => res.json())
-    .then((data) => setData(data))
-    .catch((error) => console.error("Error fetching scholarships:", error));
-}, []);
-
-// Handle View Details
-const handleSeeDetails = (id) => {
-  if (user && user.email) {
-    navigate(`/viewDetails/${id}`);
-  } else {
-    navigate("/login", { state: { from: `/viewDetails/${id}` } });
-  }
-};
+   useEffect(() => {
+     fetch("http://localhost:5000/allScholarship")
+       .then((res) => res.json())
+       .then((data) => setData(data))
+       .catch((error) => console.error("Error fetching scholarships:", error));
+   }, []);
+ 
+   // Handle View Details
+   const handleSeeDetails = (id) => {
+     if (user && user.email) {
+       navigate(`/viewDetails/${id}`);
+     } else {
+       navigate("/login", { state: { from: `/viewDetails/${id}` } });
+     }
+   };
 
   return (
     <div className="container mx-auto p-6">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-semibold">My Applications</h2>
-        <div className="flex gap-2">
-          <input
-            type="text"
-            placeholder="Search by University Name"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="input input-bordered w-full"
-          />
-          <button className="btn bg-green-600 text-white" onClick={handleSearch}>
-            Search
-          </button>
-          <button className="btn bg-gray-600 text-white" onClick={handleReset}>
-            Reset
-          </button>
-        </div>
       </div>
-      {filteredApplications.length > 0 ? (
+
+      {applications.length > 0 ? (
         <table className="table-auto w-full bg-white shadow-lg rounded-md">
           <thead>
             <tr>
+              <th className="p-4">University Logo</th>
               <th className="p-4">University Name</th>
               <th className="p-4">Phone Number</th>
               <th className="p-4">Address</th>
+              <th className="p-4">Degree</th>
+              <th className="p-4">Application Fee</th>
+              <th className="p-4">Status</th>
               <th className="p-4">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {filteredApplications.map((scholarship) => (
-              <tr key={scholarship._id} className="border-b">
-                <td className="p-4">{scholarship.universityName}</td>
-                <td className="p-4">{scholarship.ApplicantsPhoneNumber || "N/A"}</td>
-                <td className="p-4">{scholarship.ApplicantAddress || "N/A"}</td>
+            {applications.map((application) => (
+              <tr key={application._id} className="border-b">
+                <td className="p-4">
+                  <img src={application.universityLogo} alt="Logo" className="w-12 h-12" />
+                </td>
+                <td className="p-4">{application.universityName}</td>
+                <td className="p-4">{application.ApplicantsPhoneNumber}</td>
+                <td className="p-4">{application.ApplicantAddress}</td>
+                <td className="p-4">{application.ApplyingDegree}</td>
+                <td className="p-4">${application.applicationFees}</td>
+                <td className="p-4">{application.status}</td>
                 <td className="p-4 flex gap-2">
                   <button
-                    onClick={() => handleSeeDetails(scholarship._id)}
-                    className=" btn-primary btn "
-                    title="View Details"
+                    onClick={() => handleSeeDetails(application._id)}
+                    className="btn btn-primary"
                   >
-                   Details
+                    Details
                   </button>
                   <button
                     onClick={() => {
-                      setSelectedApplication(scholarship);
-                      setPhoneNumber(scholarship.ApplicantsPhoneNumber || "");
-                      setAddress(scholarship.ApplicantAddress || "");
+                      setSelectedApplication(application);
+                      setPhoneNumber(application.ApplicantsPhoneNumber || "");
+                      setAddress(application.ApplicantAddress || "");
+                      setStatus(application.status || "Pending");
                       setIsModalOpen(true);
                     }}
-                    className="btn btn-primary"
+                    className="btn btn-secondary"
                   >
                     Edit
                   </button>
                   <button
-                    onClick={() => handleCancel(scholarship._id)}
+                    onClick={() => handleCancel(application._id)}
                     className="btn btn-danger"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={() => {
-                      setSelectedApplication(scholarship);
+                      setSelectedApplication(application);
                       setReviewModalOpen(true);
                     }}
                     className="btn btn-success"
@@ -258,6 +225,19 @@ const handleSeeDetails = (id) => {
                   className="textarea textarea-bordered w-full"
                   required
                 />
+              </div>
+              <div className="mt-4">
+                <label className="block mb-2">Status</label>
+                <select
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                  className="select select-bordered w-full"
+                >
+                  <option value="Pending">Pending</option>
+                  <option value="Processing">Processing</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Rejected">Rejected</option>
+                </select>
               </div>
               <div className="flex justify-end mt-4">
                 <button
@@ -312,7 +292,7 @@ const handleSeeDetails = (id) => {
                   Cancel
                 </button>
                 <button type="submit" className="btn btn-primary">
-                  Submit Review
+                  Submit
                 </button>
               </div>
             </form>

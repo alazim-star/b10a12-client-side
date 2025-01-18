@@ -92,9 +92,11 @@ const ViewDetails = () => {
       email: user?.email,
       rating,
       comment,
+  
       universityName: scholarship?.universityName,
       timestamp: new Date(),
       scholarshipName: scholarship.scholarshipName,
+      photoURL:scholarship.photoURL
     };
 
     fetch('http://localhost:5000/reviews', {
@@ -178,6 +180,7 @@ const ViewDetails = () => {
             reviews.map((review, index) => (
               <div key={index} className="border p-4 rounded-lg shadow-sm mb-4">
                 <div className="flex justify-between items-center">
+ 
                   <h4 className="font-semibold">{review.username}</h4>
                   <p className="text-sm text-gray-500">
                     {new Date(review?.timestamp).toLocaleString()}
@@ -185,6 +188,7 @@ const ViewDetails = () => {
                 </div>
                 <p className="text-gray-600 mt-2"><strong>Scholarship:</strong> {review?.scholarshipName}</p>
                 <p className="text-gray-600 mt-2">{review?.comment}</p>
+                <p className="text-gray-600 mt-2">{review?.photoURL}</p>
               </div>
             ))
           ) : (
