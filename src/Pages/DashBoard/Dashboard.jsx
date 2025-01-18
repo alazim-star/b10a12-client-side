@@ -1,7 +1,9 @@
 import React from 'react';
-import { FaAd, FaBook, FaCalendar, FaHome, FaList, FaMobile, FaSearch, FaShoppingCart,FaUsers, FaUtensils} from 'react-icons/fa';
+import { FaAd, FaBook, FaCalendar, FaEdit, FaHome, FaList, FaMobile, FaSearch, FaShoppingCart,FaUser,FaUserEdit,FaUserGraduate,FaUserNinja,FaUsers, FaUserTie, FaUtensils} from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../../Hooks/useAdmin';
+import { MdManageHistory, MdOutlineManageAccounts, MdOutlineRateReview } from 'react-icons/md';
+import { FaUsersBetweenLines } from 'react-icons/fa6';
 
 
 const Dashboard = () => {
@@ -26,32 +28,32 @@ const [isAdmin]=useAdmin()
 {/* for admin  */}
 
 <NavLink to='/dashboard/adminProfile'>
-<FaHome></FaHome>Admin Profile</NavLink>
+<FaUserTie></FaUserTie>Admin Profile</NavLink>
 </li>
 <li className='p-2'>
 
 <NavLink to='/dashboard/addScholarshipAdmin'>
-<FaUtensils></FaUtensils>Add Scholarship</NavLink>
+<FaEdit></FaEdit>Add Scholarship</NavLink>
 </li>
 <li className='p-2'>
 
 <NavLink to='/dashboard/manageScholarshipsAdmin'>
-<FaList></FaList>Manage Scholarship
+<MdManageHistory />Manage Scholarship
 </NavLink>
 </li>
 <li className='p-2'>
 
 <NavLink to='/dashboard/manageAppliedApplication'>
-<FaBook></FaBook>Manage Applied Application
+<MdOutlineManageAccounts />Manage Applied Application
 </NavLink>
 </li>
 <li className='p-2'>
 
 <NavLink to='/dashboard/manageUsers'>
-<FaUsers></FaUsers>Manage Users
+<FaUsersBetweenLines></FaUsersBetweenLines>Manage Users
 </NavLink>
 <NavLink to='/dashboard/manageReview'>
-<FaUsers></FaUsers>Manage Review
+<MdOutlineRateReview />Manage Review
 
 </NavLink>
 </li>
@@ -67,7 +69,7 @@ const [isAdmin]=useAdmin()
 
 
 <NavLink to='/dashboard/myProfile'>
-<FaList></FaList>My Profile
+<FaUserNinja></FaUserNinja>My Profile
 </NavLink>
 </li>
 
@@ -92,27 +94,27 @@ const [isAdmin]=useAdmin()
                     <li className='p-2'>
 
 <NavLink to='/dashboard/myProfileModerator'>
-<FaHome></FaHome>My Profile</NavLink>
+<FaUserEdit></FaUserEdit>My Profile</NavLink>
 </li>
 <li className='p-2'>
 
 <NavLink to='/dashboard/manageScholarshipsModerator'>
-Manage Scholarships</NavLink>
+<MdManageHistory />Manage Scholarships</NavLink>
 </li>
 <li className='p-2'>
 
 <NavLink to='/dashboard/allReviewsModerator'>
-<FaCalendar></FaCalendar>All reviews</NavLink>
+<MdOutlineRateReview />All reviews</NavLink>
 </li>
 <li className='p-2'>
 
 <NavLink to='/dashboard/allAppliedScholarship'>
-<FaAd></FaAd>All applied Scholarship</NavLink>
+<MdOutlineManageAccounts />All applied Scholarship</NavLink>
 </li>
 <li className='p-2'>
 
 <NavLink to='/dashboard/addScholarshipModerator'>
-<FaList></FaList>Add Scholarship
+<FaEdit></FaEdit>Add Scholarship
 </NavLink>
 </li>
 
