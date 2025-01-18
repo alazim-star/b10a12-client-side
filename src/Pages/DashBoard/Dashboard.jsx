@@ -1,12 +1,12 @@
 import React from 'react';
 import { FaAd, FaBook, FaCalendar, FaHome, FaList, FaMobile, FaSearch, FaShoppingCart,FaUsers, FaUtensils} from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
-
+import useAdmin from '../../Hooks/useAdmin';
 
 
 const Dashboard = () => {
 
-
+const [isAdmin]=useAdmin()
 
 
     return (
@@ -18,11 +18,12 @@ const Dashboard = () => {
                 {/* private navbar like hr/user/custom */}
                 <ul className='menu '>
                 
-                 
- 
-                     <li className='p-2'>
- 
- {/* for admin  */}
+                 {
+                    isAdmin ?<>
+                                      
+                                      <li className='p-2'>
+
+{/* for admin  */}
 
 <NavLink to='/dashboard/adminProfile'>
 <FaHome></FaHome>Admin Profile</NavLink>
@@ -34,7 +35,7 @@ const Dashboard = () => {
 </li>
 <li className='p-2'>
 
-<NavLink to='/dashboard/manageScholarship'>
+<NavLink to='/dashboard/manageScholarships'>
 <FaList></FaList>Manage Scholarship
 </NavLink>
 </li>
@@ -54,6 +55,36 @@ const Dashboard = () => {
 
 </NavLink>
 </li>
+
+                    </>
+                    :
+                    <>
+        {/* for user  */}
+
+                    {/* shared nav link  */}
+                    <div className="divider divider-warning">user</div>
+                        <li className='p-2'>
+
+
+<NavLink to='/dashboard/myProfile'>
+<FaList></FaList>My Profile
+</NavLink>
+</li>
+
+<li className='p-2'>
+
+<NavLink to='/dashboard/myApplication'>
+<FaSearch></FaSearch>My Application</NavLink>
+</li>
+<li className='p-2'>
+
+<NavLink to='/dashboard/myReviews'>
+<FaMobile></FaMobile>My reviews</NavLink>
+</li>
+                    
+                    </>
+                 }
+ 
 
 {/* for modaretor  */}
 
@@ -86,28 +117,7 @@ Manage Scholarships</NavLink>
 </li>
 
                   
-{/* for user  */}
 
-                    {/* shared nav link  */}
-                        <div className="divider divider-warning">user</div>
-                        <li className='p-2'>
-
-
-<NavLink to='/dashboard/myProfile'>
-<FaList></FaList>My Profile
-</NavLink>
-</li>
-
-<li className='p-2'>
-
-<NavLink to='/dashboard/myApplication'>
-<FaSearch></FaSearch>My Application</NavLink>
-</li>
-<li className='p-2'>
-
-<NavLink to='/dashboard/myReviews'>
-<FaMobile></FaMobile>My reviews</NavLink>
-</li>
 
                 </ul>
 

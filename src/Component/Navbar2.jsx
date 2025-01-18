@@ -52,12 +52,7 @@ const Navbar2 = () => {
       Dashboard
       </NavLink>
 
-      <NavLink
-        to="/addScholarship"
-        className="hover:text-yellow-400 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 p-3 transition mx-4 border-b-4 border-yellow-400"
-      >
-        Add Scholarship
-      </NavLink>
+      
     </>
   );
 

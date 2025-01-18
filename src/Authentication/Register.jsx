@@ -30,9 +30,10 @@ const onSubmit=data=>{
 // create user entry in the database 
 const userInfo={
   name: data.name,
-  email:data.email
+  email:data.email,
+ photoURL:data.photoURL
 }
-axiosPublic.post('/users',userInfo)
+axiosPublic.post('http://localhost:5000/users',userInfo)
 .then(res=>{
   if (res.data.insertedId) {
     console.log('user added successfully');

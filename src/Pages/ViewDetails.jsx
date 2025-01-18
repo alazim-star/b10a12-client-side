@@ -20,7 +20,8 @@ const ViewDetails = () => {
   const [comment, setComment] = useState('');
   const [averageRating, setAverageRating] = useState(0);
   const navigate = useNavigate();
-const location=useLocation()
+  const location = useLocation();
+
   useEffect(() => {
     if (scholarship && scholarship._id) {
       fetch(`http://localhost:5000/reviews/${scholarship._id}`)
@@ -41,14 +42,13 @@ const location=useLocation()
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Collect form data
     const formData = new FormData(e.target);
 
     const bookingData = {
       email: user?.email || '',
       ApplyingDate: selectedDate.toLocaleDateString(),
       applicationFees: scholarship.applicationFees,
-      universityName: scholarship.universityName,
+      universityName: scholarship?.universityName,
       universityLogo: scholarship.universityLogo,
       ApplicantsPhoneNumber: formData.get('phoneNumber'),
       ApplicantPhoto: formData.get('photo'),
@@ -73,7 +73,7 @@ const location=useLocation()
         if (data.insertedId) {
           Swal.fire('Success', 'Scholarship Applied Successfully', 'success');
           setIsModalOpen(false);
-          navigate('/dashboard/myApplication',{state:{from: location}});
+          navigate('/dashboard/myApplication', { state: { from: location } });
         } else {
           Swal.fire('Error', 'Failed to apply for the scholarship. Try again.', 'error');
         }
@@ -92,8 +92,9 @@ const location=useLocation()
       email: user?.email,
       rating,
       comment,
-      universityName: scholarship.universityName,
+      universityName: scholarship?.universityName,
       timestamp: new Date(),
+      scholarshipName: scholarship.scholarshipName,
     };
 
     fetch('http://localhost:5000/reviews', {
@@ -123,7 +124,7 @@ const location=useLocation()
       <div className="p-6 bg-white rounded-xl shadow-xl flex flex-col space-y-6">
         <div className='flex justify-between bg-red-50 p-5 rounded-xl'>
           <div>
-            <h2 className="text-3xl font-bold">{scholarship.universityName}</h2>
+            <h2 className="text-3xl font-bold">{scholarship?.universityName}</h2>
             <div className='flex gap-2'>
               <Rating
                 readonly
@@ -134,25 +135,25 @@ const location=useLocation()
               <p>Review</p>
             </div>
           </div>
-          <p className='text-2xl'><strong>Application Fees:</strong>{scholarship.applicationFees}</p>
+          <p className='text-2xl'><strong>Application Fees:</strong>{scholarship?.applicationFees}</p>
         </div>
 
         {/* Scholarship Details Card */}
         <div className="bg-white rounded-xl shadow-md p-6 space-y-4 md:space-y-0">
           <img
-            src={scholarship.universityLogo}
-            alt={scholarship.applicationFees}
+            src={scholarship?.universityLogo}
+            alt={scholarship?.applicationFees}
             className="object-cover border-2 border-gray-300 rounded-lg w-full h-[400px]"
           />
           <div>
-            <p className="text-gray-600 text-sm">Service Charge: {scholarship.details.serviceCharge}</p>
-            <p><strong>Scholarship Category:</strong> {scholarship.scholarshipCategory}</p>
-            <p><strong>Subject Category:</strong> {scholarship.subjectCategory}</p>
-            <p><strong>Stipend:</strong> {scholarship.details.stipend}</p>
-            <p><strong>Post Date:</strong> {scholarship.details.postDate}</p>
-            <p><strong>Application Deadline:</strong> {scholarship.applicationDeadline}</p>
+            <p className="text-gray-600 text-sm">Service Charge: {scholarship?.details?.serviceCharge}</p>
+            <p><strong>Scholarship Category:</strong> {scholarship?.scholarshipCategory}</p>
+            <p><strong>Subject Category:</strong> {scholarship?.subjectCategory}</p>
+            <p><strong>Stipend:</strong> {scholarship?.details?.stipend}</p>
+            <p><strong>Post Date:</strong> {scholarship?.details?.postDate}</p>
+            <p><strong>Application Deadline:</strong> {scholarship?.applicationDeadline}</p>
             <div className="mt-4">
-              <p><strong>Description:</strong> {scholarship.details.scholarshipDescription}</p>
+              <p><strong>Description:</strong> {scholarship?.details?.scholarshipDescription}</p>
             </div>
             <div className="flex justify-between space-x-4 mt-6">
               <Link to="/allScholarship">
@@ -179,11 +180,11 @@ const location=useLocation()
                 <div className="flex justify-between items-center">
                   <h4 className="font-semibold">{review.username}</h4>
                   <p className="text-sm text-gray-500">
-                    {new Date(review.timestamp).toLocaleString()}
+                    {new Date(review?.timestamp).toLocaleString()}
                   </p>
                 </div>
-                <p className="text-gray-600 mt-2"><strong>Scholarship:</strong> {review.scholarshipName}</p>
-                <p className="text-gray-600 mt-2">{review.comment}</p>
+                <p className="text-gray-600 mt-2"><strong>Scholarship:</strong> {review?.scholarshipName}</p>
+                <p className="text-gray-600 mt-2">{review?.comment}</p>
               </div>
             ))
           ) : (
@@ -269,19 +270,18 @@ const location=useLocation()
 
               {/* Applicant Degree */}
               <div>
-          <label>Applying Degree</label>
-          <select
-            required
-            className="select select-bordered w-full"
-             name="degree"
-          >
-            <option value="" disabled>Select your degree</option>
-            <option value="Diploma">Diploma</option>
-            <option value="Bachelor">Bachelor</option>
-            <option value="Masters">Masters</option>
-          </select>
-        </div>
-
+                <label>Applying Degree</label>
+                <select
+                  required
+                  className="select select-bordered w-full"
+                  name="degree"
+                >
+                  <option value="" disabled>Select your degree</option>
+                  <option value="Diploma">Diploma</option>
+                  <option value="Bachelor">Bachelor</option>
+                  <option value="Masters">Masters</option>
+                </select>
+              </div>
 
               {/* SSC Result */}
               <div>
@@ -289,8 +289,8 @@ const location=useLocation()
                 <input
                   type="text"
                   name="sscResult"
-                  placeholder="Enter your SSC result"
                   required
+                  placeholder="Enter your SSC result"
                   className="input input-bordered w-full"
                 />
               </div>
@@ -301,28 +301,35 @@ const location=useLocation()
                 <input
                   type="text"
                   name="hscResult"
-                  placeholder="Enter your HSC result"
                   required
+                  placeholder="Enter your HSC result"
                   className="input input-bordered w-full"
                 />
               </div>
 
-{/* Study Gap */}
-<div>
-          <label>Study Gap</label>
-          <select
-            className="select select-bordered w-full"
-            name="studyGap"
-          >
-            <option value="">No gap</option>
-            <option value="1 year">1 year</option>
-            <option value="2 years">2 years</option>
-            <option value="3+ years">3+ years</option>
-          </select>
-        </div>
+              {/* Study Gap */}
+              <div>
+                <label>Study Gap</label>
+                <select
+                  className="select select-bordered w-full"
+                  name="studyGap"
+                >
+                  <option value="">No gap</option>
+                  <option value="1 year">1 year</option>
+                  <option value="2 years">2 years</option>
+                  <option value="3+ years">3+ years</option>
+                </select>
+              </div>
 
-
-
+              {/* Date Picker */}
+              <div>
+                <label>Application Date</label>
+                <DatePicker
+                  selected={selectedDate}
+                  onChange={setSelectedDate}
+                  className="input input-bordered w-full"
+                />
+              </div>
               <div className="flex justify-between space-x-4 mt-6">
                 <button
                   onClick={() => setIsModalOpen(false)}
@@ -339,6 +346,14 @@ const location=useLocation()
                 </button>
               </div>
             </form>
+
+            {/* Cancel Button */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-2 right-2 text-xl text-red-600 z-50"
+            >
+              ✕
+            </button>
           </div>
         </div>
       )}
@@ -346,28 +361,25 @@ const location=useLocation()
       {/* Review Modal */}
       {reviewModalOpen && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-xl shadow-lg w-96 max-h-[90vh] overflow-y-auto">
-            <h3 className="text-2xl font-semibold mb-4">Write a Review</h3>
-            <form onSubmit={handleReviewSubmit} className="space-y-4">
+          <div className="bg-white p-6 rounded-xl shadow-lg w-[500px]">
+            <h3 className="text-2xl font-semibold mb-4">Submit Your Review</h3>
+            <form onSubmit={handleReviewSubmit}>
               <div>
-                <label>Your Rating</label>
                 <Rating
+                  onChange={(rate) => setRating(rate)}
+                  initialRating={rating}
                   emptySymbol={<FaStar className="text-gray-300" />}
                   fullSymbol={<FaStar className="text-yellow-500" />}
-                  initialRating={rating}
-                  onChange={setRating}
-                  className="text-2xl"
+                  fractions={2}
                 />
               </div>
-
               <div>
                 <label>Your Comment</label>
                 <textarea
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
-                  placeholder="Write your review"
-                  required
                   className="textarea textarea-bordered w-full"
+                  placeholder="Write your review here..."
                 />
               </div>
 
@@ -387,6 +399,12 @@ const location=useLocation()
                 </button>
               </div>
             </form>
+            <button
+              onClick={() => setReviewModalOpen(false)}
+              className="absolute top-2 right-2 text-xl text-red-600 z-50"
+            >
+              ✕
+            </button>
           </div>
         </div>
       )}

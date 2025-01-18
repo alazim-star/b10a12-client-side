@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { FaEye } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const MyApplication = () => {
   const { user } = useContext(AuthContext); // Access user context
@@ -17,6 +18,8 @@ const MyApplication = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [rating, setRating] = useState(null);
   const [comment, setComment] = useState("");
+  const navigate = useNavigate();
+  const [data, setData] = useState([]);
 
   // Fetch all applications for the logged-in user
   useEffect(() => {
@@ -31,79 +34,63 @@ const MyApplication = () => {
     }
   }, [user]);
 
-  // Handle application cancellation
+  // Handle Delete/Cancel Scholarship
   const handleCancel = (id) => {
     Swal.fire({
       title: "Are you sure?",
-      text: "Once canceled, this action cannot be undone.",
+      text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, cancel it!",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
-          .delete(`http://localhost:5000/applications/${id}`)
-          .then(() => {
-            Swal.fire("Canceled!", "Your application has been canceled.", "success");
-            setApplications((prev) => prev.filter((app) => app._id !== id));
-            setFilteredApplications((prev) => prev.filter((app) => app._id !== id));
+        fetch(`http://localhost:5000/allScholarship/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "The scholarship has been deleted.", "success");
+              setData((prevData) => prevData.filter((scholarship) => scholarship._id !== id));
+            }
           })
-          .catch((err) => console.error("Error canceling application:", err));
+          .catch((err) => console.error("Error cancelling scholarship:", err));
       }
     });
   };
 
-
-  
-
-  // Handle date update for an application
-  const handleUpdateApplication = () => {
-    const formattedDate = selectedDate.toISOString();
-    axios
-      .put(`http://localhost:5000/applications/${selectedApplication._id}`, {
-        applicationDate: formattedDate,
-      })
-      .then(() => {
-        Swal.fire("Updated!", "Application date updated successfully.", "success");
-        setApplications((prev) =>
-          prev.map((app) =>
-            app._id === selectedApplication._id
-              ? { ...app, applicationDate: formattedDate }
-              : app
-          )
-        );
-        setFilteredApplications((prev) =>
-          prev.map((app) =>
-            app._id === selectedApplication._id
-              ? { ...app, applicationDate: formattedDate }
-              : app
-          )
-        );
-        setIsModalOpen(false);
-      })
-      .catch((err) => console.error("Error updating application date:", err));
-  };
-
-  // Handle review submission
-  const handleReviewSubmit = (e) => {
+  // Handle Update application
+  const handleUpdateApplication = (e) => {
     e.preventDefault();
-    const reviewData = {
-      email: user.email,
-      applicationId: selectedApplication._id,
-      comment,
-      rating,
+
+    const updatedApplication = {
+      ...selectedApplication, // Preserve other selected application data
+      applicationDate: selectedDate, // Updating the applicationDate with the selected date
     };
+
     axios
-      .post("http://localhost:5000/reviews", reviewData)
-      .then(() => {
-        Swal.fire("Success!", "Your review has been submitted.", "success");
-        setReviewModalOpen(false);
-        setComment("");
-        setRating(null);
+      .put(`http://localhost:5000/applications/${selectedApplication._id}`, updatedApplication)
+      .then((response) => {
+        if (response.data.modifiedCount > 0) {
+          Swal.fire("Updated!", "Your application has been updated.", "success");
+          // After successful update, you can close the modal and update the state if needed
+          setIsModalOpen(false);
+          // You may also want to update the application in your state directly
+          setApplications((prevApplications) =>
+            prevApplications.map((app) =>
+              app._id === selectedApplication._id ? updatedApplication : app
+            )
+          );
+        } else {
+          Swal.fire("Error", "Unable to update the application.", "error");
+        }
       })
-      .catch((err) => console.error("Error submitting review:", err));
+      .catch((err) => {
+        console.error("Error updating application:", err);
+        Swal.fire("Error", "Something went wrong!", "error");
+      });
   };
 
   // Filter applications based on the search term
@@ -128,6 +115,23 @@ const MyApplication = () => {
     );
   }
 
+  // Fetch scholarships from the backend
+  useEffect(() => {
+    fetch("http://localhost:5000/allScholarship")
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .catch((error) => console.error("Error fetching scholarships:", error));
+  }, []);
+
+  // Handle View Details
+  const handleSeeDetails = (id) => {
+    if (user && user.email) {
+      navigate(`/viewDetails/${id}`);
+    } else {
+      navigate("/login", { state: { from: `/viewDetails/${id}` } });
+    }
+  };
+
   return (
     <div className="container mx-auto p-6">
       <div className="flex justify-between items-center mb-6">
@@ -148,12 +152,12 @@ const MyApplication = () => {
           </button>
         </div>
       </div>
-      {filteredApplications.length > 0 ? (
+      {data.length > 0 ? (
         <table className="table-auto w-full bg-white shadow-lg rounded-md">
           <thead>
             <tr>
+              <th className="p-4">University Logo</th>
               <th className="p-4">University Name</th>
-              <th className="p-4">University Address</th>
               <th className="p-4">Feedback</th>
               <th className="p-4">Subject Category</th>
               <th className="p-4">Degree</th>
@@ -164,32 +168,30 @@ const MyApplication = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredApplications.map((app) => (
-              <tr key={app._id} className="border-b">
-                <td className="p-4">{app.universityName}</td>
-                <td className="p-4">{app.ApplicantGender}</td>
-                <td className="p-4">{app.feedback || "N/A"}</td>
-                <td className="p-4">{app.subjectCategory}</td>
-                <td className="p-4">{app.appliedDegree}</td>
-                <td className="p-4">${app.applicationFees}</td>
-                <td className="p-4">${app.serviceCharge}</td>
-                <td className="p-4">{app.applicationStatus}</td>
+            {data.map((scholarship) => (
+              <tr key={scholarship._id} className="border-b">
+                <td className="p-4">
+                  <img src={scholarship?.universityLogo} alt="Logo" />
+                </td>
+                <td className="p-4">{scholarship?.universityName}</td>
+                <td className="p-4">{scholarship.feedback || "N/A"}</td>
+                <td className="p-4">{scholarship.subjectCategory}</td>
+                <td className="p-4">{scholarship?.appliedDegree}</td>
+                <td className="p-4">${scholarship.applicationFees}</td>
+                <td className="p-4">${scholarship?.details?.serviceCharge}</td>
+                <td className="p-4">{scholarship.applicationStatus}</td>
                 <td className="p-4 flex gap-2">
-                {app?._id && (
-  <Link to={`/viewDetails/${app._id}`}>
-    <button
-      onClick={() => setSelectedApplication(app)}
-      className="btn btn-info"
-    >
-      Details
-    </button>
-  </Link>
-)}
-
+                  <button
+                    onClick={() => handleSeeDetails(scholarship._id)}
+                    className="text-blue-600 hover:text-blue-800"
+                    title="View Details"
+                  >
+                    <FaEye />
+                  </button>
                   <button
                     onClick={() => {
-                      setSelectedApplication(app);
-                      setSelectedDate(new Date(app.applicationDate));
+                      setSelectedApplication(scholarship);
+                      setSelectedDate(new Date(scholarship.applicationDate));
                       setIsModalOpen(true);
                     }}
                     className="btn btn-primary"
@@ -197,14 +199,14 @@ const MyApplication = () => {
                     Edit
                   </button>
                   <button
-                    onClick={() => handleCancel(app._id)}
+                    onClick={() => handleCancel(scholarship._id)}
                     className="btn btn-danger"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={() => {
-                      setSelectedApplication(app);
+                      setSelectedApplication(scholarship);
                       setReviewModalOpen(true);
                     }}
                     className="btn btn-success"

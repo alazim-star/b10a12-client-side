@@ -15,13 +15,13 @@ import AuthProvider from './AuthProvider/AuthProvider';
 import { HelmetProvider } from 'react-helmet-async';
 import Register from './Authentication/Register';
 import Login from './Authentication/login';
-import ScholarshipAdd from './Pages/DashBoard/ScholarshipAdd';
+import ScholarshipAdd from './Pages/DashBoard/Admin/ScholarshipAdd';
 import AllScholarships from './ScholarShip/AllScholarships';
 import ViewDetails from './Pages/ViewDetails';
 import CheckOutFrom from './Payment/CheckOutFrom';
-import MyApplication from './Pages/DashBoard/MyApplication';
+import MyApplication from './Pages/DashBoard/User/MyApplication';
 import Dashboard from './Pages/DashBoard/Dashboard';
-import AdminProfile from './Pages/DashBoard/AdminProfile';
+import AdminProfile from './Pages/DashBoard/Admin/AdminProfile';
 import PrivateRoute from './PrivetRoute/PrivateRoute';
 
 import {
@@ -29,7 +29,12 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
-import UserProfile from './Pages/DashBoard/userProfile';
+import UserProfile from './Pages/DashBoard/User/UserProfile';
+import ManageUsers from './Pages/DashBoard/Admin/ManageUsers';
+import AdminRoutes from './Pages/DashBoard/Admin/AdminRoutes';
+import ManageScholarships from './Pages/DashBoard/Modaretor/ManageScholarships';
+import MyReview from './Pages/DashBoard/User/MyReview';
+import ErrorPage from './ErrorPage/ErrorPage';
 
 
 
@@ -38,7 +43,8 @@ const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout>Hello world!</MainLayout>,
+    element: <MainLayout></MainLayout>,
+    errorElement:<ErrorPage></ErrorPage>,
     children:[
       {
         path: "/",
@@ -92,12 +98,50 @@ const router = createBrowserRouter([
             path: "myProfile",
             element: <UserProfile></UserProfile>,
           },
+          {
+            path: "myReviews",
+            element: <MyReview></MyReview>,
+          },
 
 // admin dashboard
 {
   path: "addScholarship",
-  element: <ScholarshipAdd></ScholarshipAdd>,
+  element: <AdminRoutes>
+    <ScholarshipAdd></ScholarshipAdd>
+  </AdminRoutes>,
 },
+{
+  path: "manageUsers",
+  element: <AdminRoutes>
+    <ManageUsers></ManageUsers>
+  </AdminRoutes>,
+},
+{
+  path: "manageScholarships",
+  element: <AdminRoutes>
+    <ManageScholarships></ManageScholarships>
+  </AdminRoutes>,
+},
+{
+  path: "adminProfile",
+  element: <AdminRoutes>
+    <AdminProfile></AdminProfile>
+  </AdminRoutes>,
+},
+
+
+// Moderator 
+{
+  path: "manageScholarships",
+  element: <ManageScholarships></ManageScholarships>,
+},
+{
+  path: "addScholarship",
+  element: 
+    <ScholarshipAdd></ScholarshipAdd>,
+
+},
+
 
         ],
       },
@@ -108,7 +152,7 @@ const router = createBrowserRouter([
    
   },
 
- 
+  
 
 ]);
 

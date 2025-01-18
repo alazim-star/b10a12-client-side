@@ -17,7 +17,7 @@ const Login = () => {
   const { signIn, signInWithGoogle } = useContext(AuthContext);
   const emailRef = useRef();
   const auth = getAuth();
-const from= location.state?.from?.pathname || "/"
+// const from= location.state?.from?.pathname || "/"
   useEffect(() => {
     loadCaptchaEnginge(6); // Initialize CAPTCHA
   }, []);

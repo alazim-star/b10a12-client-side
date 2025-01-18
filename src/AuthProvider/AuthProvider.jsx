@@ -2,8 +2,9 @@
 import {createContext, useEffect, useState } from "react";
 import {createUserWithEmailAndPassword, getAuth,GoogleAuthProvider,onAuthStateChanged,signInWithEmailAndPassword,signInWithPopup, signOut, updateProfile} from "firebase/auth";
 
-import axios from "axios";
+
 import { app } from "../Firebase/firebase.config";
+import useAxiosPublic from "../Hooks/axiosPublic";
 
 
 
@@ -15,6 +16,7 @@ const auth = getAuth(app);
 const googleProvider=new GoogleAuthProvider()
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const axiosPublic=useAxiosPublic()
 
 
    
@@ -46,43 +48,34 @@ const signOutUser=()=>{
 
 
 // for loading 
-useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-        console.log("Current user:", currentUser);
-        setUser(currentUser);
-
-        try {
-            if (currentUser?.email) {
-                const user = { email: currentUser.email };
-                axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
-                .then(res=>{
-                    console.log('login token',res.data)
-                    setLoading(false)
-                  })
-                  
-            } else {
-                const response = await axios.post(
-                    'http://localhost:5000/logout',
-                    {},
-                    { withCredentials: true }
-                    .then(res=>{
-                        console.log('logout',res.data)
-                        setLoading(false)
-                      })
-                );
-               
-            }
-        } catch (error) {
-            console.error("Error during authentication flow:", error);
-        } finally {
-            setLoading(false);
+useEffect(()=>{
+    const unsubscribe=onAuthStateChanged(auth,currentUser=>{
+        setUser(currentUser)
+        // console.log("currentUser",currentUser);
+    if (currentUser) {
+//get token and store client
+const userInfo={ email: currentUser.email}
+    axiosPublic.post('/jwt',userInfo)
+    .then(res=>{
+        if (res.data.token) {
+            localStorage.setItem('access-token',res.data.token)
+            setLoading(false)
         }
-    });
-
-    return () => {
-        unsubscribe();
-    };
-}, []);
+     
+    })
+        
+    }
+    else{
+       localStorage.removeItem('access-token')
+       setLoading(false)
+    }
+      
+    })
+return()=>{
+    return unsubscribe()
+}
+  
+},[axiosPublic])
 
 const updateUserProfile=(updatedData)=>{
     return updateProfile(auth.currentUser,  updatedData)
@@ -91,6 +84,7 @@ const updateUserProfile=(updatedData)=>{
 }
 // google sign in 
 const signInWithGoogle=()=>{
+    setLoading(true)
     return signInWithPopup(auth,googleProvider)
 }
 
