@@ -141,6 +141,7 @@ const ManageScholarships = () => {
         <table className="table-auto w-full bg-white rounded-lg shadow-md">
           <thead className="bg-gray-800 text-white">
             <tr>
+            <th className="px-4 py-2 text-left">Scholarship Logo</th>
               <th className="px-4 py-2 text-left">Scholarship Name</th>
               <th className="px-4 py-2 text-left">University Name</th>
               <th className="px-4 py-2 text-left">Subject Category</th>
@@ -152,6 +153,8 @@ const ManageScholarships = () => {
           <tbody>
             {data.map((scholarship) => (
               <tr key={scholarship._id} className="hover:bg-gray-100">
+                  <td className="border px-4 py-2"><img src={scholarship.universityLogo
+                  } alt="" /></td>
                 <td className="border px-4 py-2">{scholarship.scholarshipName}</td>
                 <td className="border px-4 py-2">{scholarship.universityName}</td>
                 <td className="border px-4 py-2">{scholarship.subjectCategory}</td>

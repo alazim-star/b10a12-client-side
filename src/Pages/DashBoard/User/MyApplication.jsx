@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import Swal from "sweetalert2";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import axios from "axios";
 import { FaEye } from "react-icons/fa";
@@ -15,9 +13,10 @@ const MyApplication = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reviewModalOpen, setReviewModalOpen] = useState(false);
   const [selectedApplication, setSelectedApplication] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(new Date());
   const [rating, setRating] = useState(null);
   const [comment, setComment] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
   const navigate = useNavigate();
   const [data, setData] = useState([]);
 
@@ -61,26 +60,26 @@ const MyApplication = () => {
     });
   };
 
-  // Handle Update application
+  // Handle Update Application
   const handleUpdateApplication = (e) => {
     e.preventDefault();
 
-    const updatedApplication = {
-      ...selectedApplication, // Preserve other selected application data
-      applicationDate: selectedDate, // Updating the applicationDate with the selected date
+    const updatedData = {
+      ApplicantsPhoneNumber: phoneNumber,
+      ApplicantAddress: address,
     };
 
     axios
-      .put(`http://localhost:5000/applications/${selectedApplication._id}`, updatedApplication)
+      .put(`http://localhost:5000/applications/${selectedApplication._id}`, updatedData)
       .then((response) => {
         if (response.data.modifiedCount > 0) {
           Swal.fire("Updated!", "Your application has been updated.", "success");
-          // After successful update, you can close the modal and update the state if needed
           setIsModalOpen(false);
-          // You may also want to update the application in your state directly
           setApplications((prevApplications) =>
-            prevApplications.map((app) =>
-              app._id === selectedApplication._id ? updatedApplication : app
+            prevApplications.map((scholarship) =>
+              scholarship._id === selectedApplication._id
+                ? { ...scholarship, ...updatedData }
+                : scholarship
             )
           );
         } else {
@@ -93,10 +92,42 @@ const MyApplication = () => {
       });
   };
 
+  // Handle Review Submit
+  const handleReviewSubmit = (e) => {
+    e.preventDefault();
+
+    const reviewData = {
+      scholarshipId: selectedApplication._id,
+      rating: rating,
+      comment: comment,
+      email: user.email,
+      universityName: selectedApplication.universityName,
+      timestamp: new Date().toISOString(),
+    };
+
+    fetch("http://localhost:5000/reviews", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reviewData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire("Success", "Review added successfully!", "success");
+          setReviewModalOpen(false);
+        } else {
+          Swal.fire("Error", "Failed to add the review. Try again.", "error");
+        }
+      })
+      .catch(() => {
+        Swal.fire("Error", "Something went wrong. Try again later.", "error");
+      });
+  };
+
   // Filter applications based on the search term
   const handleSearch = () => {
-    const filtered = applications.filter((app) =>
-      app.universityName.toLowerCase().includes(searchTerm.toLowerCase())
+    const filtered = applications.filter((scholarship) =>
+      scholarship.universityName.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredApplications(filtered);
   };
@@ -107,30 +138,22 @@ const MyApplication = () => {
     setSearchTerm("");
   };
 
-  if (!user) {
-    return (
-      <div className="container mx-auto p-6">
-        <p className="text-red-600">You must be logged in to view your applications.</p>
-      </div>
-    );
+ // Fetch scholarships from the backend
+ useEffect(() => {
+  fetch("http://localhost:5000/allScholarship")
+    .then((res) => res.json())
+    .then((data) => setData(data))
+    .catch((error) => console.error("Error fetching scholarships:", error));
+}, []);
+
+// Handle View Details
+const handleSeeDetails = (id) => {
+  if (user && user.email) {
+    navigate(`/viewDetails/${id}`);
+  } else {
+    navigate("/login", { state: { from: `/viewDetails/${id}` } });
   }
-
-  // Fetch scholarships from the backend
-  useEffect(() => {
-    fetch("http://localhost:5000/allScholarship")
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((error) => console.error("Error fetching scholarships:", error));
-  }, []);
-
-  // Handle View Details
-  const handleSeeDetails = (id) => {
-    if (user && user.email) {
-      navigate(`/viewDetails/${id}`);
-    } else {
-      navigate("/login", { state: { from: `/viewDetails/${id}` } });
-    }
-  };
+};
 
   return (
     <div className="container mx-auto p-6">
@@ -152,46 +175,35 @@ const MyApplication = () => {
           </button>
         </div>
       </div>
-      {data.length > 0 ? (
+      {filteredApplications.length > 0 ? (
         <table className="table-auto w-full bg-white shadow-lg rounded-md">
           <thead>
             <tr>
-              <th className="p-4">University Logo</th>
               <th className="p-4">University Name</th>
-              <th className="p-4">Feedback</th>
-              <th className="p-4">Subject Category</th>
-              <th className="p-4">Degree</th>
-              <th className="p-4">Application Fees</th>
-              <th className="p-4">Service Charge</th>
-              <th className="p-4">Status</th>
+              <th className="p-4">Phone Number</th>
+              <th className="p-4">Address</th>
               <th className="p-4">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((scholarship) => (
+            {filteredApplications.map((scholarship) => (
               <tr key={scholarship._id} className="border-b">
-                <td className="p-4">
-                  <img src={scholarship?.universityLogo} alt="Logo" />
-                </td>
-                <td className="p-4">{scholarship?.universityName}</td>
-                <td className="p-4">{scholarship.feedback || "N/A"}</td>
-                <td className="p-4">{scholarship.subjectCategory}</td>
-                <td className="p-4">{scholarship?.appliedDegree}</td>
-                <td className="p-4">${scholarship.applicationFees}</td>
-                <td className="p-4">${scholarship?.details?.serviceCharge}</td>
-                <td className="p-4">{scholarship.applicationStatus}</td>
+                <td className="p-4">{scholarship.universityName}</td>
+                <td className="p-4">{scholarship.ApplicantsPhoneNumber || "N/A"}</td>
+                <td className="p-4">{scholarship.ApplicantAddress || "N/A"}</td>
                 <td className="p-4 flex gap-2">
                   <button
                     onClick={() => handleSeeDetails(scholarship._id)}
-                    className="text-blue-600 hover:text-blue-800"
+                    className=" btn-primary btn "
                     title="View Details"
                   >
-                    <FaEye />
+                   Details
                   </button>
                   <button
                     onClick={() => {
                       setSelectedApplication(scholarship);
-                      setSelectedDate(new Date(scholarship.applicationDate));
+                      setPhoneNumber(scholarship.ApplicantsPhoneNumber || "");
+                      setAddress(scholarship.ApplicantAddress || "");
                       setIsModalOpen(true);
                     }}
                     className="btn btn-primary"
@@ -227,22 +239,39 @@ const MyApplication = () => {
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded shadow-lg w-96">
             <h3 className="text-2xl font-semibold">Edit Application</h3>
-            <DatePicker
-              selected={selectedDate}
-              onChange={(date) => setSelectedDate(date)}
-              className="input input-bordered w-full mt-4"
-            />
-            <div className="flex justify-end mt-4">
-              <button
-                className="btn btn-secondary mr-2"
-                onClick={() => setIsModalOpen(false)}
-              >
-                Cancel
-              </button>
-              <button className="btn btn-primary" onClick={handleUpdateApplication}>
-                Update
-              </button>
-            </div>
+            <form onSubmit={handleUpdateApplication}>
+              <div className="mt-4">
+                <label className="block mb-2">Phone Number</label>
+                <input
+                  type="text"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  className="input input-bordered w-full"
+                  required
+                />
+              </div>
+              <div className="mt-4">
+                <label className="block mb-2">Address</label>
+                <textarea
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  className="textarea textarea-bordered w-full"
+                  required
+                />
+              </div>
+              <div className="flex justify-end mt-4">
+                <button
+                  type="button"
+                  className="btn btn-secondary mr-2"
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button type="submit" className="btn btn-primary">
+                  Update
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
@@ -251,17 +280,17 @@ const MyApplication = () => {
       {reviewModalOpen && selectedApplication && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded shadow-lg w-96">
-            <h3 className="text-2xl font-semibold">Add a Review</h3>
+            <h3 className="text-2xl font-semibold">Add Review</h3>
             <form onSubmit={handleReviewSubmit}>
               <div className="mt-4">
-                <label className="block mb-2">Rating (1-5)</label>
+                <label className="block mb-2">Rating</label>
                 <input
                   type="number"
-                  min="1"
-                  max="5"
                   value={rating}
                   onChange={(e) => setRating(e.target.value)}
                   className="input input-bordered w-full"
+                  min="1"
+                  max="5"
                   required
                 />
               </div>
@@ -282,8 +311,8 @@ const MyApplication = () => {
                 >
                   Cancel
                 </button>
-                <button type="submit" className="btn btn-success">
-                  Submit
+                <button type="submit" className="btn btn-primary">
+                  Submit Review
                 </button>
               </div>
             </form>
