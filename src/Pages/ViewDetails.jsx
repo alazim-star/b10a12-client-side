@@ -44,8 +44,9 @@ const ViewDetails = () => {
 
     const formData = new FormData(e.target);
 
-    const bookingData = {
+    const ApplyingData = {
       email: user?.email || '',
+      applicationId:scholarship._id,
       ApplyingDate: selectedDate.toLocaleDateString(),
       applicationFees: scholarship.applicationFees,
       universityName: scholarship?.universityName,
@@ -58,6 +59,7 @@ const ViewDetails = () => {
       SSCResult: formData.get('sscResult'),
       HSCResult: formData.get('hscResult'),
       StudyGap: formData.get('studyGap'),
+      scholarshipDeadline:scholarship.applicationDeadline
     };
 
     setIsSubmitting(true);
@@ -65,7 +67,7 @@ const ViewDetails = () => {
     fetch('http://localhost:5000/applications', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(bookingData),
+      body: JSON.stringify(ApplyingData),
     })
       .then((res) => res.json())
       .then((data) => {

@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import SectionTitle from "../../../Shard/SectionTitle";
 
 const MyApplication = () => {
   const { user } = useContext(AuthContext); // Access user context
@@ -16,6 +17,11 @@ const MyApplication = () => {
   const [address, setAddress] = useState("");
   const [status, setStatus] = useState(""); // For handling application status
   const navigate = useNavigate();
+  const [data,setData]=useState([])
+  const totalPrice = applications.reduce(
+    (total, item) => total + Number(item.applicationFees || 0),
+    0
+  );
 
   // Fetch all applications for the logged-in user
   useEffect(() => {
@@ -128,10 +134,21 @@ const MyApplication = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold">My Applications</h2>
+      
+      <div className=" items-center mb-6">
+        <SectionTitle heading="My Applications"></SectionTitle>
+        <h2 className='text-2xl'>Total Application: {applications.length}</h2>
+        <h2 className='text-2xl'>Total Payment: $ {totalPrice}</h2>
       </div>
+    <div className="text-center ">  
 
+{applications.length ? <Link to="/dashboard/payment">
+<button  className="btn btn-primary">Pay</button>
+</Link>:<button  disabled className="btn btn-primary">Pay</button>
+
+}
+
+    </div>
       {applications.length > 0 ? (
         <table className="table-auto w-full bg-white shadow-lg rounded-md">
           <thead>

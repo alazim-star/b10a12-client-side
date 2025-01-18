@@ -2,19 +2,22 @@ import React from 'react';
 import { FaAd, FaBook, FaCalendar, FaEdit, FaHome, FaList, FaMobile, FaSearch, FaShoppingCart,FaUser,FaUserEdit,FaUserGraduate,FaUserNinja,FaUsers, FaUserTie, FaUtensils} from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../../Hooks/useAdmin';
-import { MdManageHistory, MdOutlineManageAccounts, MdOutlineRateReview } from 'react-icons/md';
+import { MdManageHistory, MdOutlineDashboard, MdOutlineManageAccounts, MdOutlineRateReview } from 'react-icons/md';
 import { FaUsersBetweenLines } from 'react-icons/fa6';
+import { HiDocumentDuplicate } from 'react-icons/hi';
+import useModerator from '../../Hooks/useModerator';
 
 
 const Dashboard = () => {
 
 const [isAdmin]=useAdmin()
+const [isModerator]=useModerator()
 
 
     return (
         <div className='flex'>
 {/* side bar  */}
-            <div className="min-h-screen bg-orange-400 w-64">
+            <div className="text-white min-h-screen bg-custom1 w-64">
 
 
                 {/* private navbar like hr/user/custom */}
@@ -88,6 +91,10 @@ const [isAdmin]=useAdmin()
                  }
  
 
+{
+    isModerator? <>
+    
+    
 {/* for modaretor  */}
 
 <div className="divider divider-neutral">Moderator</div>
@@ -117,11 +124,38 @@ const [isAdmin]=useAdmin()
 <FaEdit></FaEdit>Add Scholarship
 </NavLink>
 </li>
+    
+    </>:<>
+    
+  {/* for Menu  */}
+<div className="divider divider-neutral">All Menu</div>
 
-                  
+<li className='p-2'>
+
+<NavLink to='/'>
+<FaHome></FaHome>Home
+</NavLink>
+</li> 
+<li className='p-2'>
+
+<NavLink to='/allScholarship'>
+<HiDocumentDuplicate />All Scholarship
+</NavLink>
+</li> 
+<li className='p-2'>
+
+<NavLink to='/dashboard'>
+<MdOutlineDashboard
+ />Dashboard
+</NavLink>
+</li> 
+
+    
+    </>
+}
 
 
-                </ul>
+</ul>
 
             </div>
             {/* dashboard content  */}

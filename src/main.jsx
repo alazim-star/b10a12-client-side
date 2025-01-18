@@ -18,7 +18,7 @@ import Login from './Authentication/login';
 import ScholarshipAdd from './Pages/DashBoard/Admin/ScholarshipAdd';
 import AllScholarships from './ScholarShip/AllScholarships';
 import ViewDetails from './Pages/ViewDetails';
-import CheckOutFrom from './Payment/CheckOutFrom';
+import CheckOutFrom from './Payment/CheckOutForm';
 import MyApplication from './Pages/DashBoard/User/MyApplication';
 import Dashboard from './Pages/DashBoard/Dashboard';
 import AdminProfile from './Pages/DashBoard/Admin/AdminProfile';
@@ -41,6 +41,8 @@ import ManageAppliedApplication from './Pages/DashBoard/Admin/ManageAppliedAppli
 import AllReviewsModerator from './Pages/DashBoard/Modaretor/AllReviewsModerator';
 import AllAppliedScholarship from './Pages/DashBoard/Modaretor/AllAppliedScholarship';
 import AddScholarshipModerator from './Pages/DashBoard/Modaretor/AddScholarshipModerator';
+import Payment from './Payment/Payment';
+import ModeratorRoutes from './Pages/DashBoard/Modaretor/ModeratorRoutes';
 
 
 
@@ -50,7 +52,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    // errorElement:<ErrorPage></ErrorPage>,
+    errorElement:<ErrorPage></ErrorPage>,
     children:[
       {
         path: "/",
@@ -87,7 +89,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/dashboard",
+        path: "dashboard",
         element: <PrivateRoute>
           <Dashboard></Dashboard>
         </PrivateRoute>,
@@ -107,6 +109,10 @@ const router = createBrowserRouter([
           {
             path: "myReviews",
             element: <MyReview></MyReview>,
+          },
+          {
+            path: "payment",
+            element: <Payment></Payment>,
           },
 
 // admin dashboard
@@ -151,35 +157,47 @@ const router = createBrowserRouter([
 // Moderator 
 {
   path: "manageScholarshipsModerator",
-  element: <ManageScholarships></ManageScholarships>,
+  element:<ModeratorRoutes>
+     <ManageScholarships></ManageScholarships>
+  </ModeratorRoutes>,
 },
 {
   path: "addScholarship",
   element: 
-    <ScholarshipAdd></ScholarshipAdd>,
+    <ModeratorRoutes>
+      <ScholarshipAdd></ScholarshipAdd>
+    </ModeratorRoutes>,
 
 },
 {
   path: "myProfileModerator",
-  element: <MyProfileModerator></MyProfileModerator>,
+  element: <ModeratorRoutes>
+    <MyProfileModerator></MyProfileModerator>
+  </ModeratorRoutes>,
     
 
 },
 {
   path: "allReviewsModerator",
-  element: <AllReviewsModerator></AllReviewsModerator>,
+  element: <ModeratorRoutes>
+    <AllReviewsModerator></AllReviewsModerator>
+  </ModeratorRoutes>,
     
 
 },
 {
   path: "allAppliedScholarship",
-  element: <AllAppliedScholarship></AllAppliedScholarship>,
+  element: <ModeratorRoutes>
+    <AllAppliedScholarship></AllAppliedScholarship>
+  </ModeratorRoutes>,
     
 
 },
 {
   path: "addScholarshipModerator",
-  element: <AddScholarshipModerator></AddScholarshipModerator>,
+  element: <ModeratorRoutes>
+    <AddScholarshipModerator></AddScholarshipModerator>
+  </ModeratorRoutes>,
     
 },
 

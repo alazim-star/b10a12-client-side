@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import UseAuth from '../../../Hooks/useAuth';
 import axios from 'axios';
+import SectionTitle from '../../../Shard/SectionTitle';
 
 const ManageAppliedApplication = () => {
   const { user } = UseAuth();
@@ -9,6 +10,7 @@ const ManageAppliedApplication = () => {
   const [selectedApplication, setSelectedApplication] = useState(null);
   const [feedback, setFeedback] = useState('');
   const [modalType, setModalType] = useState(''); // "details" or "feedback"
+  const [sortOption, setSortOption] = useState('date'); // Default sorting by date
 
   // Fetch all applications
   useEffect(() => {
@@ -64,9 +66,37 @@ const ManageAppliedApplication = () => {
     });
   };
 
+  // Sort applications
+  const sortApplications = () => {
+    let sortedApplications = [...applications];
+
+    if (sortOption === 'date') {
+      sortedApplications.sort((a, b) => new Date(b.ApplyingDate) - new Date(a.ApplyingDate));
+    } else if (sortOption === 'deadline') {
+      sortedApplications.sort((a, b) => new Date(b.scholarshipDeadline) - new Date(a.scholarshipDeadline));
+    }
+
+    return sortedApplications;
+  };
+
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Manage Applied Applications</h1>
+      <div className="items-center mb-6">
+        <SectionTitle heading="Manage Applied Application"></SectionTitle>
+        <h2 className='text-2xl'>Total Application: {applications.length}</h2>
+      </div>
+
+      <div className="flex justify-center gap-4 mb-6">
+        {/* Dropdown for Sorting */}
+        <select
+          className="select select-bordered"
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
+        >
+          <option value="date">Sort by Applied Date</option>
+          <option value="deadline">Sort by Scholarship Deadline</option>
+        </select>
+      </div>
 
       {applications.length === 0 ? (
         <p className="text-center text-gray-500">No applications found.</p>
@@ -77,13 +107,14 @@ const ManageAppliedApplication = () => {
               <th className="px-4 py-2 border">University Logo</th>
               <th className="px-4 py-2 border">University Name</th>
               <th className="px-4 py-2 border">Degree</th>
-              <th className="px-4 py-2 border">Email</th>
-              <th className="px-4 py-2 border">Status</th>
+              <th className="px-4 py-2 border">Candidate</th>
+              <th className="px-4 py-2 border">Apply Date</th>
+              <th className="px-4 py-2 border">Post Date</th>
               <th className="px-4 py-2 border">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {applications.map((application) => (
+            {sortApplications().map((application) => (
               <tr key={application._id}>
                 <td className="px-4 py-2 border">
                   <img src={application.universityLogo} alt="Logo" className="h-12 w-12 object-contain" />
@@ -91,7 +122,8 @@ const ManageAppliedApplication = () => {
                 <td className="px-4 py-2 border">{application.universityName}</td>
                 <td className="px-4 py-2 border">{application.ApplyingDegree}</td>
                 <td className="px-4 py-2 border">{application.email}</td>
-                <td className="px-4 py-2 border">{application.status}</td>
+                <td className="px-4 py-2 border">{application.ApplyingDate}</td>
+                <td className="px-2 py-2 border">{application.scholarshipDeadline}</td>
                 <td className="px-4 py-2 border flex gap-2 justify-center">
                   <button
                     className="px-2 py-1 bg-blue-500 text-white rounded"
