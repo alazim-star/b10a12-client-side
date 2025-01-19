@@ -24,9 +24,9 @@ const CheckOutForm = () => {
   
 
 
-  console.log('checking');
-  console.log('total price',totalPrice)
-  console.log('scholarship',scholarship)
+//   console.log('checking');
+//   console.log('total price',totalPrice)
+//   console.log('scholarship',scholarship)
   const navigate = useNavigate();
   useEffect(() => {
     if (totalPrice > 0) {
@@ -89,7 +89,7 @@ const CheckOutForm = () => {
           applicationFees: totalPrice,
           transactionId: paymentIntent.id,
           data: new Date(), //utc data convert use moment js to
-          applicationId: scholarship.map((item) => item._id),
+          applicationIds: scholarship.map((item) => item._id),
           status: "pending",
         };
         const res = await axiosSecure.post("/payments", Payment);

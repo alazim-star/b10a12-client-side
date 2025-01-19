@@ -7,6 +7,8 @@ const AllScholarships = () => {
   const [filteredScholarships, setFilteredScholarships] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const scholarshipsPerPage = 4; // Number of scholarships per page
 
   // Fetch all scholarships
   useEffect(() => {
@@ -37,6 +39,7 @@ const AllScholarships = () => {
     });
 
     setFilteredScholarships(filtered);
+    setCurrentPage(1); // Reset to the first page
   };
 
   // Handle reset
@@ -44,14 +47,27 @@ const AllScholarships = () => {
     if (!scholarships.length) return;
     setFilteredScholarships(scholarships);
     setSearchTerm("");
+    setCurrentPage(1); // Reset to the first page
+  };
+
+  // Pagination logic
+  const indexOfLastScholarship = currentPage * scholarshipsPerPage;
+  const indexOfFirstScholarship = indexOfLastScholarship - scholarshipsPerPage;
+  const currentScholarships = filteredScholarships.slice(
+    indexOfFirstScholarship,
+    indexOfLastScholarship
+  );
+
+  const totalPages = Math.ceil(filteredScholarships.length / scholarshipsPerPage);
+
+  // Handle page change
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
   };
 
   return (
     <>
-      <SectionTitle
-        subHeading="We have the most popular scholarships"
-        heading="All Scholarships"
-      />
+      <SectionTitle heading="All Scholarships" />
       {/* Sticky Search Bar */}
       <div className="sticky top-0 bg-white z-10 shadow-sm p-4">
         <div className="flex gap-2">
@@ -77,8 +93,8 @@ const AllScholarships = () => {
           <p className="text-center text-lg">Loading scholarships...</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-5 mt-4">
-            {filteredScholarships.length > 0 ? (
-              filteredScholarships.map((scholarship) => (
+            {currentScholarships.length > 0 ? (
+              currentScholarships.map((scholarship) => (
                 <ScholarshipCard key={scholarship._id} scholarship={scholarship} />
               ))
             ) : (
@@ -88,6 +104,19 @@ const AllScholarships = () => {
             )}
           </div>
         )}
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="flex justify-center items-center mt-6 gap-2">
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+          <button
+            key={page}
+            className={`btn ${currentPage === page ? "btn-active" : "btn-outline"}`}
+            onClick={() => handlePageChange(page)}
+          >
+            {page}
+          </button>
+        ))}
       </div>
     </>
   );

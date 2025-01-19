@@ -137,13 +137,17 @@ const MyApplication = () => {
       
       <div className=" items-center mb-6">
         <SectionTitle heading="My Applications"></SectionTitle>
-        <h2 className='text-2xl'>Total Application: {applications.length}</h2>
-        <h2 className='text-2xl'>Total Payment:{totalPrice}</h2>
+      
       </div>
-    <div className="text-center ">  
+    <div className=" flex gap-10 my-5 ">  
+
+<div>
+<h2 className='text-2xl'>Total Application: {applications.length}</h2>
+<h2 className='text-2xl'>Total Payment:{totalPrice}</h2>
+</div>
 
 {applications.length ? <Link to="/dashboard/payment">
-<button  className="btn btn-primary">Pay</button>
+<button  className="btn btn-primary">Pay Now</button>
 </Link>:<button  disabled className="btn btn-primary">Pay</button>
 
 }

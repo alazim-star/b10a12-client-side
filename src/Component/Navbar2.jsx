@@ -125,7 +125,7 @@ const Navbar2 = () => {
                   className="w-10 h-10 rounded-full border border-white"
                 />
               )}
-              <p className="text-sm lg:text-md text-white">
+              <p className="text-sm lg:text-md text-custom1">
                 Welcome, <span className="font-bold">{user.email}</span>
               </p>
               <button

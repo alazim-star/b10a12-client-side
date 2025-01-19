@@ -21,7 +21,7 @@ const ScholarshipAdd = () => {
       });
       const data = await res.json();
       if (data.success) {
-        setUniversityLogo(data.data.display_url); // Corrected to use `display_url`
+        setUniversityLogo(data.data.display_url);
         Swal.fire({
           title: "Success",
           text: "Image uploaded successfully!",
@@ -63,7 +63,7 @@ const ScholarshipAdd = () => {
     const applicationDeadline = form.applicationDeadline.value;
     const postDate = form.postDate.value;
     const postedUserEmail = form.postedUserEmail.value;
-    const description = form.description.value; // New description field
+    const description = form.description.value;
 
     const newScholarship = {
       scholarshipName,
@@ -81,7 +81,7 @@ const ScholarshipAdd = () => {
       applicationDeadline,
       postDate,
       postedUserEmail,
-      description, // Add description to the newScholarship object
+      description,
     };
 
     fetch("http://localhost:5000/allScholarship", {
@@ -111,13 +111,13 @@ const ScholarshipAdd = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+      <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-4 sm:p-6">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
           Add Scholarship
         </h2>
         <form onSubmit={handleAddScholarship}>
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="relative mb-4">
               <label>Scholarship Name</label>
               <input
@@ -147,17 +147,16 @@ const ScholarshipAdd = () => {
               onChange={handleImageUpload}
               accept="image/*"
             />
-            {loading && <p>Uploading image...</p>}
+            {loading && <p className="text-sm text-gray-500">Uploading image...</p>}
             {universityLogo && (
               <img
                 src={universityLogo}
                 alt="University Logo"
-                className="mt-3 h-20"
+                className="mt-3 h-20 object-contain"
               />
             )}
           </div>
-          {/* Rest of the form remains the same */}
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="relative mb-4">
               <label>University Country</label>
               <input
@@ -189,7 +188,7 @@ const ScholarshipAdd = () => {
               required
             />
           </div>
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="relative mb-4">
               <label>Subject Category</label>
               <select
@@ -215,7 +214,7 @@ const ScholarshipAdd = () => {
               </select>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="relative mb-4">
               <label>Degree</label>
               <select
@@ -238,7 +237,7 @@ const ScholarshipAdd = () => {
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="relative mb-4">
               <label>Application Fees</label>
               <input
@@ -260,7 +259,7 @@ const ScholarshipAdd = () => {
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="relative mb-4">
               <label>Application Deadline</label>
               <input
@@ -290,7 +289,6 @@ const ScholarshipAdd = () => {
               required
             />
           </div>
-          {/* New Description Field */}
           <div className="relative mb-4">
             <label>Scholarship Description</label>
             <textarea

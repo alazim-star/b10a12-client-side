@@ -45,11 +45,10 @@ const Footer = () => {
         <div  className="mt-10">
           <h3 className="font-bold text-lg mb-4">Quick Links:</h3>
           <ul className="space-y-2 text-sm">
-            <li><a href="" className="hover:underline">Templates</a></li>
-            <li><a href="" className="hover:underline">Blog And Article</a></li>
-            <li><a href="" className="hover:underline">Integrations</a></li>
-            <li><a href="" className="hover:underline">Webinars</a></li>
-            <li><a href="" className="hover:underline">Privacy & Policy</a></li>
+            <li><a href="#" className="hover:underline">Blog And Article</a></li>
+            <li><a href="#" className="hover:underline">Integrations</a></li>
+            <li><a href="#" className="hover:underline">Webinars</a></li>
+            <li><a href="#" className="hover:underline">Privacy & Policy</a></li>
           </ul>
         </div>
 
@@ -57,12 +56,12 @@ const Footer = () => {
         <div  className="mt-10">
           <h3 className="font-bold text-lg mb-4">Gallery:</h3>
           <div className="grid grid-cols-3 gap-2">
-            <img src="/images/img1.jpg" alt="Gallery" className="w-full h-16 object-cover" />
-            <img src="/images/img2.jpg" alt="Gallery" className="w-full h-16 object-cover" />
-            <img src="/images/img3.jpg" alt="Gallery" className="w-full h-16 object-cover" />
-            <img src="/images/img4.jpg" alt="Gallery" className="w-full h-16 object-cover" />
-            <img src="/images/img5.jpg" alt="Gallery" className="w-full h-16 object-cover" />
-            <img src="/images/img6.jpg" alt="Gallery" className="w-full h-16 object-cover" />
+            <img src="https://i.ibb.co.com/zs2hnKZ/Fully-funded-opportunity-for-students-with-Manaaki-Scholarship-in-New-Zealand.jpg" alt="Gallery" className="w-full h-16 object-cover" />
+            <img src="https://i.ibb.co.com/cXGC5j9/group-young-students-front-school-building.jpg" alt="Gallery" className="w-full h-16 object-cover" />
+            <img src="https://i.ibb.co.com/3RqJDmv/young-people-looking-victorious.jpg" alt="Gallery" className="w-full h-16 object-cover" />
+            <img src="https://i.ibb.co.com/5xgCnxt/360-F-535738048-p-Xb7j-VYzqpx8a-Yb9r-Kmb0uyfy-AKqa-Njb.jpg" alt="Gallery" className="w-full h-16 object-cover" />
+            <img src="https://i.ibb.co.com/Khygb9D/images-3.jpg" alt="Gallery" className="w-full h-16 object-cover" />
+            <img src="https://i.ibb.co.com/wKnJWNq/boys-girls-graduation.jpg" alt="Gallery" className="w-full h-16 object-cover" />
           </div>
         </div>
       </div>

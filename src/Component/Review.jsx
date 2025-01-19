@@ -1,63 +1,57 @@
 import React, { useEffect, useState } from 'react';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
+import Marquee from "react-fast-marquee";
 import { Rating } from '@smastrom/react-rating';
-import '@smastrom/react-rating/style.css'
+import '@smastrom/react-rating/style.css';
 import SectionTitle from '../Shard/SectionTitle';
-import { RiDoubleQuotesL } from 'react-icons/ri';
-
 
 const Review = () => {
-const [reviews,setReviews]=useState([])
-useEffect(()=>{
-fetch('http://localhost:5000/reviews')
-.then(res=>res.json())
-.then(data=>setReviews(data))
+  const [reviews, setReviews] = useState([]);
 
+  useEffect(() => {
+    fetch('http://localhost:5000/reviews')
+      .then((res) => res.json())
+      .then((data) => setReviews(data))
+      .catch((error) => console.error("Error fetching reviews:", error));
+  }, []);
 
-},[])
-
-
-    return (
-        <div>
-            <section className='my-20'>
-                <SectionTitle subHeading='---What Our Clients Say---' heading="TESTIMONIALS" ></SectionTitle>
-
-
-                <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-      
+  return (
+    <div className="container mx-auto px-4">
+      <section className="my-20">
+        <SectionTitle
        
-       {
-        reviews.map(review=>  <SwiperSlide key={review._id} review={review}>
-<div className='flex flex-col items-center my-16 mx-24 m-24'>
+          heading="Our Client Reviews"
+        />
 
-<RiDoubleQuotesL className='text-7xl' />
-<Rating
-      style={{ maxWidth: 180 }}
-      value={review.rating}
-      readOnly
-    />
-    <p className='py-10'>{review.review}</p>
-    <h3 className='text-2xl text-orange-400 '>{review.name}</h3>
-</div>
-
-
-
-
-        </SwiperSlide>)
-       }
-      </Swiper>
-
-
-            </section>
-            
-        </div>
-    );
+        {reviews.length > 0 ? (
+          <Marquee pauseOnHover speed={50}>
+            {reviews.map((review) => (
+              <div
+                key={review._id}
+                className="flex flex-col items-center mx-8 p-6 bg-white shadow-lg rounded-lg max-w-xs"
+              >
+                <img
+                  className="w-20 h-20 rounded-full mb-4"
+                  src={review.photoURL || 'https://via.placeholder.com/150'}
+                  alt="Reviewer"
+                />
+                <p className="font-semibold text-lg">{review.reviewerName || 'Anonymous'}</p>
+                <p className="text-sm text-gray-600 text-center mt-2">
+                  {review.comment || 'No comments provided.'}
+                </p>
+                <Rating
+                  style={{ maxWidth: 150 }}
+                  value={review.rating || 0}
+                  readOnly
+                />
+              </div>
+            ))}
+          </Marquee>
+        ) : (
+          <p className="text-center text-gray-500">No reviews available at the moment.</p>
+        )}
+      </section>
+    </div>
+  );
 };
 
 export default Review;

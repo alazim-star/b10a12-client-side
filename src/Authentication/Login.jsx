@@ -17,7 +17,9 @@ const Login = () => {
   const { signIn, signInWithGoogle } = useContext(AuthContext);
   const emailRef = useRef();
   const auth = getAuth();
-// const from= location.state?.from?.pathname || "/"
+
+
+
   useEffect(() => {
     loadCaptchaEnginge(6); // Initialize CAPTCHA
   }, []);
@@ -40,6 +42,8 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = { email: email };
+         // Navigate user
+         navigate('/');
         toast.success('Login successful!', {
           position: 'top-right',
           autoClose: 3000,
@@ -54,11 +58,11 @@ const Login = () => {
           })
           .then((res) => {
             console.log('JWT token saved successfully.');
+          
           });
 
-        // Navigate user
-        navigate(location?.state || '/');
-
+         
+       
         // Update last login info
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
         const loginInfo = { email, lastSignInTime };
@@ -97,12 +101,8 @@ const Login = () => {
             autoClose: 3000,
           });
         })
-        .catch((error) => {
-          toast.error(`Failed to send password reset email: ${error.message}`, {
-            position: 'top-right',
-            autoClose: 3000,
-          });
-        });
+      
+        
     }
   };
 
@@ -195,8 +195,10 @@ const Login = () => {
                 className="input input-bordered"
                 required
               />
+             
             </div>
             {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+            
             <div className="form-control mt-6">
               <button
                 className="btn rounded-md bg-green-600 text-white"

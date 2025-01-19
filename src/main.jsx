@@ -32,7 +32,7 @@ import {
 import UserProfile from './Pages/DashBoard/User/UserProfile';
 import ManageUsers from './Pages/DashBoard/Admin/ManageUsers';
 import AdminRoutes from './Pages/DashBoard/Admin/AdminRoutes';
-import ManageScholarships from './Pages/DashBoard/Modaretor/ManageScholarships';
+import ManageScholarships from './Pages/DashBoard/Admin/ManageScholarships';
 import MyReview from './Pages/DashBoard/User/MyReview';
 import ErrorPage from './ErrorPage/ErrorPage';
 import MyProfileModerator from './Pages/DashBoard/Modaretor/MyProfileModerator';
@@ -44,6 +44,7 @@ import AddScholarshipModerator from './Pages/DashBoard/Modaretor/AddScholarshipM
 import Payment from './Payment/Payment';
 import ModeratorRoutes from './Pages/DashBoard/Modaretor/ModeratorRoutes';
 import CartBoard from './Pages/DashBoard/CartBoard';
+import PaymentHistory from './Payment/PaymentHistory';
 
 
 
@@ -120,6 +121,10 @@ const router = createBrowserRouter([
           {
             path: "payment",
             element: <Payment></Payment>,
+          },
+          {
+            path: "paymentHistory",
+            element: <PaymentHistory></PaymentHistory>,
           },
 
 // admin dashboard

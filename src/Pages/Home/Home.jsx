@@ -3,6 +3,7 @@
 import Banner from '../../Component/Banner';
 import Review from '../../Component/Review';
 
+
 import HomeScholarships from '../../ScholarShip/HomeScholarships';
 
 
@@ -18,6 +19,7 @@ const Home = () => {
         <div>
          
             <Banner></Banner>
+          
             <HomeScholarships></HomeScholarships>
             <Review></Review>
 

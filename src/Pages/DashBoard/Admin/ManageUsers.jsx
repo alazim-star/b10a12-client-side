@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { FaTrashAlt, FaUser, FaUsers, FaUserShield, FaUserTie } from "react-icons/fa";
+import { FaTrashAlt, FaUser, FaUserShield, FaUserTie } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
-  const [filterRole, setFilterRole] = useState("all"); 
+  const [filterRole, setFilterRole] = useState("all");
 
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
@@ -127,11 +127,11 @@ const ManageUsers = () => {
                         onClick={() => handleMakeAdmin(user)}
                         className="mr-2"
                       >
-                     
+                        <FaUserTie className="text-green-600" />
                       </button>
                       <button onClick={() => handleMakeModerator(user)}>
-                        <FaUser className="text-green-600" />
-                    </button>
+                        <FaUserShield className="text-green-600" />
+                      </button>
                     </>
                   )}
                 </td>

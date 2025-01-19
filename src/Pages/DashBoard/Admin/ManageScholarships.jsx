@@ -135,11 +135,11 @@ const ManageScholarships = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-gray-100 p-6 ">
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Manage Scholarships</h2>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto table collapse ">
         <table className="table-auto w-full bg-white rounded-lg shadow-md">
-          <thead className="bg-gray-800 text-white">
+          <thead className="bg-custom1 text-white">
             <tr>
             <th className="px-4 py-2 text-left">Scholarship Logo</th>
               <th className="px-4 py-2 text-left">Scholarship Name</th>

@@ -4,9 +4,9 @@ import axios from "axios";
 import SectionTitle from "../../../Shard/SectionTitle";
 
 const AdminProfile = () => {
-  const { user } = useContext(AuthContext);
+  const { user} = useContext(AuthContext);
   const [profileDetails, setProfileDetails] = useState({});
-  
+  const [loading,setLoading]=useState([])
 
 
   useEffect(() => {
@@ -27,18 +27,18 @@ const AdminProfile = () => {
   return (
     <div>
       <SectionTitle heading={'admin profile'}></SectionTitle>
-      <div className="card bg-base-100 w-96 shadow-xl lg:ml-64 lg:mt-10">
+      <div className="card bg-base-100 lg:w-96 shadow-xl lg:ml-64 lg:mt-10">
   <figure className="px-10 pt-10">
     <img
       src={profileDetails.photoURL}
-      alt="Shoes"
+      alt={profileDetails?.displayName}
       className="rounded-xl" />
   </figure>
   <div className="card-body items-center text-center">
     <h2 className="card-title">{profileDetails.name}</h2>
     <p>{profileDetails.email}</p>
     <div className="card-actions">
-      <button className="btn btn-primary"> Role:{profileDetails.role}</button>
+      <button className="btn bg-custom1 w-full"> Role:{profileDetails.role}</button>
     </div>
   </div>
 </div>

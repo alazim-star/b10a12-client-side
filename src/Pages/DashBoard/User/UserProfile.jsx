@@ -27,7 +27,7 @@ const UserProfile = () => {
   return (
     <div>
       <SectionTitle heading={'User profile'}></SectionTitle>
-      <div className="card bg-base-100 w-96 shadow-xl lg:ml-64 lg:mt-10">
+      <div className="card bg-base-100 lg:w-96 shadow-xl lg:ml-64 lg:mt-10">
   <figure className="px-10 pt-10">
     <img
       src={profileDetails.photoURL}

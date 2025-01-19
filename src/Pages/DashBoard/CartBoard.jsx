@@ -1,6 +1,15 @@
 import React from "react";
 import { Bar, Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend, Title } from "chart.js";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  ArcElement,
+  Tooltip,
+  Legend,
+  Title,
+} from "chart.js";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend, Title);
 
@@ -66,18 +75,22 @@ const CartBoard = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="container mx-auto p-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* Bar Chart */}
-      <div className="bg-white shadow-lg rounded-lg p-4">
-        <Bar data={barChartData} options={barChartOptions} />
+      <div className="bg-white shadow-lg rounded-lg p-4 flex items-center justify-center">
+        <div className="w-full max-w-[600px]">
+          <Bar data={barChartData} options={barChartOptions} />
+        </div>
       </div>
 
       {/* Donut Chart */}
-      <div className="bg-white shadow-lg rounded-lg p-4">
-        <Doughnut data={doughnutChartData} options={doughnutChartOptions} />
+      <div className="bg-white shadow-lg rounded-lg p-4 flex items-center justify-center w-">
+        <div className="w-full max-w-[400px]">
+          <Doughnut data={doughnutChartData} options={doughnutChartOptions} />
+        </div>
       </div>
     </div>
   );
 };
 
-export default CartBoard
+export default CartBoard;

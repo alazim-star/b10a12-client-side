@@ -1,23 +1,17 @@
 import React from "react";
-import { FaEdit, FaHome, FaSearch, FaUserNinja, FaUsers} from "react-icons/fa";
+import { FaEdit, FaHome, FaSearch, FaUserNinja, FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../Hooks/useAdmin";
 import useModerator from "../../Hooks/useModerator";
 import { MdOutlineDashboard, MdManageHistory, MdOutlineManageAccounts, MdOutlineRateReview } from "react-icons/md";
 import { HiDocumentDuplicate } from "react-icons/hi";
+import useScholarship from "../../Hooks/useScholarship";
+import { FaNoteSticky } from "react-icons/fa6";
 
 const Dashboard = () => {
-  const [isAdmin, isAdminLoading] = useAdmin();
-  const [isModerator, isModeratorLoading] = useModerator();
-
-  // Loading state while role is being checked
-  if (isAdminLoading || isModeratorLoading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-     <span className="loading loading-bars loading-lg"></span>
-      </div>
-    );
-  }
+  const [isAdmin] = useAdmin();
+  const [isModerator] = useModerator();
+  const [scholarship] = useScholarship();
 
   return (
     <div className="flex">
@@ -42,31 +36,26 @@ const Dashboard = () => {
                   <MdManageHistory /> Manage Scholarships
                 </NavLink>
               </li>
-              <li className='p-2'>
-
-<NavLink to='/dashboard/manageAppliedApplication'>
-<MdOutlineManageAccounts />Manage Applied Application
-</NavLink>
-</li>
+              <li className="p-2">
+                <NavLink to="/dashboard/manageAppliedApplication">
+                  <MdOutlineManageAccounts /> Manage Applied Application
+                </NavLink>
+              </li>
               <li className="p-2">
                 <NavLink to="/dashboard/manageUsers">
                   <FaUsers /> Manage Users
                 </NavLink>
               </li>
-              <li className="p-2 ">
+              <li className="p-2">
                 <NavLink to="/dashboard/manageReview">
                   <MdOutlineRateReview /> Manage Reviews
                 </NavLink>
               </li>
-
-              <li className='p-2'>
-
-<NavLink to='/dashboard/cartBoard'>
-<MdOutlineRateReview />Cart Board
-
-</NavLink>
-</li>
-
+              <li className="p-2">
+                <NavLink to="/dashboard/cartBoard">
+                  <MdOutlineRateReview /> Cart Board
+                </NavLink>
+              </li>
             </>
           )}
 
@@ -89,31 +78,23 @@ const Dashboard = () => {
                   <MdOutlineRateReview /> All Reviews
                 </NavLink>
               </li>
-
-
-              <li className='p-2'>
-
-<NavLink to='/dashboard/allAppliedScholarship'>
-<MdOutlineManageAccounts />All applied Scholarship</NavLink>
-</li>
-<li className='p-2'>
-
-<NavLink to='/dashboard/addScholarshipModerator'>
-<FaEdit></FaEdit>Add Scholarship
-</NavLink>
-</li>
-    
-
-
-
-              
+              <li className="p-2">
+                <NavLink to="/dashboard/allAppliedScholarship">
+                  <MdOutlineManageAccounts /> All Applied Scholarship
+                </NavLink>
+              </li>
+              <li className="p-2">
+                <NavLink to="/dashboard/addScholarshipModerator">
+                  <FaEdit /> Add Scholarship
+                </NavLink>
+              </li>
             </>
           )}
 
           {/* Regular User Menu */}
           {!isAdmin && !isModerator && (
             <>
-              <div className="divider divider-warning">User</div>
+              <div className="divider divider-neutral">User</div>
               <li className="p-2">
                 <NavLink to="/dashboard/myProfile">
                   <FaUserNinja /> My Profile
@@ -121,12 +102,17 @@ const Dashboard = () => {
               </li>
               <li className="p-2">
                 <NavLink to="/dashboard/myApplication">
-                  <FaSearch /> My Applications
+                  <FaSearch /> My Applications ({scholarship.length})
                 </NavLink>
               </li>
               <li className="p-2">
                 <NavLink to="/dashboard/myReviews">
                   <MdOutlineRateReview /> My Reviews
+                </NavLink>
+              </li>
+              <li className="p-2">
+                <NavLink to="/dashboard/paymentHistory">
+                  <FaNoteSticky />Payment History
                 </NavLink>
               </li>
             </>
