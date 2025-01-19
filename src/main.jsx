@@ -43,6 +43,7 @@ import AllAppliedScholarship from './Pages/DashBoard/Modaretor/AllAppliedScholar
 import AddScholarshipModerator from './Pages/DashBoard/Modaretor/AddScholarshipModerator';
 import Payment from './Payment/Payment';
 import ModeratorRoutes from './Pages/DashBoard/Modaretor/ModeratorRoutes';
+import CartBoard from './Pages/DashBoard/CartBoard';
 
 
 
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement:<ErrorPage></ErrorPage>,
+    // errorElement:<ErrorPage></ErrorPage>,
     children:[
       {
         path: "/",
@@ -94,6 +95,12 @@ const router = createBrowserRouter([
           <Dashboard></Dashboard>
         </PrivateRoute>,
         children:[
+
+          
+          {
+            path: "cartBoard",
+            element: <CartBoard></CartBoard>,
+          },
          
 // user dashboard 
 

@@ -138,7 +138,7 @@ const MyApplication = () => {
       <div className=" items-center mb-6">
         <SectionTitle heading="My Applications"></SectionTitle>
         <h2 className='text-2xl'>Total Application: {applications.length}</h2>
-        <h2 className='text-2xl'>Total Payment: $ {totalPrice}</h2>
+        <h2 className='text-2xl'>Total Payment:{totalPrice}</h2>
       </div>
     <div className="text-center ">  
 
@@ -173,7 +173,7 @@ const MyApplication = () => {
                 <td className="p-4">{application.ApplicantsPhoneNumber}</td>
                 <td className="p-4">{application.ApplicantAddress}</td>
                 <td className="p-4">{application.ApplyingDegree}</td>
-                <td className="p-4">${application.applicationFees}</td>
+                <td className="p-4">{application.applicationFees}</td>
                 <td className="p-4">{application.status}</td>
                 <td className="p-4 flex gap-2">
                   <button
