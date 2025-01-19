@@ -1,5 +1,6 @@
 
 
+import Accordion from '../../Component/Accordion';
 import Banner from '../../Component/Banner';
 import Review from '../../Component/Review';
 
@@ -22,6 +23,7 @@ const Home = () => {
           
             <HomeScholarships></HomeScholarships>
             <Review></Review>
+            <Accordion></Accordion>
 
           
 

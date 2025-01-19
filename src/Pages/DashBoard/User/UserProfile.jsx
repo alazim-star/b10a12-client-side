@@ -6,7 +6,7 @@ import SectionTitle from "../../../Shard/SectionTitle";
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
   const [profileDetails, setProfileDetails] = useState({});
-  
+  const [loading,setLoading]=useState([])
 
 
   useEffect(() => {

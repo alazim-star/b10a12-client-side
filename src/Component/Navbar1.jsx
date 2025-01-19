@@ -1,11 +1,14 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaSkype, FaTwitter } from "react-icons/fa";
+import Theme from "./Theme";
 
 const Navbar1= () => {
   return (
     <div className="bg-base-100 shadow-md">
+ 
       {/* Top Bar */}
       <div className=" text-white lg:flex justify-between items-center px-4 py-2 text-sm bg-custom1 text-w">
+      <Theme></Theme>
         <div className="lg:flex items-center">
           <div className="flex">
           <span className="flex items-center space-x-2">

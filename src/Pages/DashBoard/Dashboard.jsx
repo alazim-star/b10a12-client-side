@@ -102,7 +102,7 @@ const Dashboard = () => {
               </li>
               <li className="p-2">
                 <NavLink to="/dashboard/myApplication">
-                  <FaSearch /> My Applications ({scholarship.length})
+                  <FaNoteSticky /> My Applications ({scholarship.length})
                 </NavLink>
               </li>
               <li className="p-2">
