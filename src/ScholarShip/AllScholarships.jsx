@@ -8,15 +8,14 @@ const AllScholarships = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const scholarshipsPerPage = 4; // Number of scholarships per page
-
+  const scholarshipsPerPage = 4; 
   // Fetch all scholarships
   useEffect(() => {
     fetch('http://localhost:5000/allScholarship')
       .then((res) => res.json())
       .then((data) => {
         setScholarships(data);
-        setFilteredScholarships(data); // Initialize filtered scholarships
+        setFilteredScholarships(data); 
         setLoading(false);
       })
       .catch((error) => console.error('Error fetching scholarships:', error));
@@ -27,7 +26,7 @@ const AllScholarships = () => {
     if (!scholarships.length) return;
 
     const filtered = scholarships.filter((app) => {
-      const scholarshipName = app.scholarshipName || ""; // Fallback for undefined fields
+      const scholarshipName = app.scholarshipName || "";
       const universityName = app.universityName || "";
       const degree = app.degree || "";
 
@@ -39,7 +38,7 @@ const AllScholarships = () => {
     });
 
     setFilteredScholarships(filtered);
-    setCurrentPage(1); // Reset to the first page
+    setCurrentPage(1); 
   };
 
   // Handle reset
@@ -47,7 +46,7 @@ const AllScholarships = () => {
     if (!scholarships.length) return;
     setFilteredScholarships(scholarships);
     setSearchTerm("");
-    setCurrentPage(1); // Reset to the first page
+    setCurrentPage(1); 
   };
 
   // Pagination logic
