@@ -3,14 +3,16 @@ import Swal from 'sweetalert2';
 import UseAuth from '../../../Hooks/useAuth';
 import axios from 'axios';
 import SectionTitle from '../../../Shard/SectionTitle';
+import { MdOutlineSystemUpdateAlt } from 'react-icons/md';
 
 const ManageAppliedApplication = () => {
   const { user } = UseAuth();
   const [applications, setApplications] = useState([]);
   const [selectedApplication, setSelectedApplication] = useState(null);
   const [feedback, setFeedback] = useState('');
-  const [modalType, setModalType] = useState(''); // "details" or "feedback"
+  const [modalType, setModalType] = useState(''); // "details", "feedback", or "status"
   const [sortOption, setSortOption] = useState('date'); // Default sorting by date
+  const [status, setStatus] = useState(''); // Status options
 
   // Fetch all applications
   useEffect(() => {
@@ -38,6 +40,25 @@ const ManageAppliedApplication = () => {
           setSelectedApplication(null);
         })
         .catch((err) => console.error('Error submitting feedback:', err));
+    }
+  };
+
+  // Handle status update
+  const updateStatus = () => {
+    if (selectedApplication?._id) {
+      axios
+        .patch(`http://localhost:5000/applications/${selectedApplication._id}`, { status })
+        .then(() => {
+          Swal.fire('Status Updated', 'Application status updated successfully.', 'success');
+          setApplications((prev) =>
+            prev.map((app) =>
+              app._id === selectedApplication._id ? { ...app, status } : app
+            )
+          );
+          setStatus('');
+          setSelectedApplication(null);
+        })
+        .catch((err) => console.error('Error updating status:', err));
     }
   };
 
@@ -109,7 +130,8 @@ const ManageAppliedApplication = () => {
               <th className="px-4 py-2 border">Degree</th>
               <th className="px-4 py-2 border">Candidate</th>
               <th className="px-4 py-2 border">Apply Date</th>
-              <th className="px-4 py-2 border">Post Date</th>
+              <th className="px-2 py-2 border">Post Date</th>
+              <th className="px-2 py-2 border">Status</th>
               <th className="px-4 py-2 border">Actions</th>
             </tr>
           </thead>
@@ -124,6 +146,23 @@ const ManageAppliedApplication = () => {
                 <td className="px-4 py-2 border">{application.email}</td>
                 <td className="px-4 py-2 border">{application.ApplyingDate}</td>
                 <td className="px-2 py-2 border">{application.scholarshipDeadline}</td>
+                <td className="px-5 py-2 border ">{application.status}
+
+                <MdOutlineSystemUpdateAlt
+                    className="text-xl"
+                    onClick={() => {
+                      setSelectedApplication(application);
+                      setModalType('status');
+                    }}
+                  >
+                    Update Status
+                  </MdOutlineSystemUpdateAlt>
+
+
+
+                  
+
+                </td>
                 <td className="px-4 py-2 border flex gap-2 justify-center">
                   <button
                     className="px-2 py-1 bg-blue-500 text-white rounded"
@@ -143,6 +182,7 @@ const ManageAppliedApplication = () => {
                   >
                     Feedback
                   </button>
+               
                   <button
                     className="px-2 py-1 bg-red-500 text-white rounded"
                     onClick={() => handleCancel(application._id)}
@@ -182,6 +222,35 @@ const ManageAppliedApplication = () => {
                     onClick={submitFeedback}
                   >
                     Submit
+                  </button>
+                </div>
+              </>
+            ) : modalType === 'status' ? (
+              <>
+                <h2 className="text-xl font-bold mb-4">Update Status</h2>
+                <select
+                  className="w-full border border-gray-300 rounded p-2"
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                >
+               
+                  <option value="Applied">Applied</option>
+                  <option value="Done">Done</option>
+                  <option value="Not Eligible">Not Eligible</option>
+                  <option value="Try Next Time">Try Next Time</option>
+                </select>
+                <div className="flex justify-end gap-2 mt-4">
+                  <button
+                    className="px-4 py-2 bg-gray-700 text-white rounded"
+                    onClick={() => setSelectedApplication(null)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="px-4 py-2 bg-green-500 text-white rounded"
+                    onClick={updateStatus}
+                  >
+                    Update
                   </button>
                 </div>
               </>

@@ -46,7 +46,7 @@ const Navbar2 = () => {
         All Scholarship
       </NavLink>
       <NavLink
-        to="/dashboard"
+        to="/dashboard/cartBoard"
         className="hover:text-yellow-400 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 p-3 transition mx-4 border-b-4 border-yellow-400"
       >
       Dashboard
@@ -127,6 +127,7 @@ const Navbar2 = () => {
               )}
               <p className="text-sm lg:text-md text-custom1">
                 Welcome, <span className="font-bold">{user.email}</span>
+              
               </p>
               <button
                 onClick={handleSignOut}

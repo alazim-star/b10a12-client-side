@@ -31,7 +31,7 @@ const UserProfile = () => {
   <figure className="px-10 pt-10">
     <img
       src={profileDetails.photoURL}
-      alt="Shoes"
+      alt=""
       className="rounded-xl" />
   </figure>
   <div className="card-body items-center text-center">

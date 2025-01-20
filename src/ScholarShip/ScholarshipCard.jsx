@@ -15,17 +15,17 @@ const ScholarshipCard = ({ scholarship, applications = [], setFilteredApplicatio
   };
 
   return (
-    <div className="w-full mt-4">
+    <div className="w-[600px] mt-4">
       {/* Scholarship Card */}
-      <div className="border rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl bg-gradient-to-br from-white via-gray-100 to-gray-200">
+      <div className="border   shadow-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-3xl rounded-tl-[150px] rounded-br-[150px]  ">
         {/* Scholarship Logo */}
         <div className="relative">
           <img
-            className="w-full h-52 object-cover rounded-t-xl"
+            className="w-full h-52 object-cover "
             src={scholarship?.universityLogo || "default-logo.png"}
             alt={scholarship?.universityName || "University Logo"}
           />
-          <div className="absolute top-3 right-3 bg-gradient-to-r from-[#0ab99d] to-[#0a9d9d] text-white py-1 px-3 text-xs font-semibold rounded-full shadow-md">
+          <div className=" absolute top-3 right-3 bg-gradient-to-r from-[#0ab99d] to-[#0a9d9d] text-white py-1 px-3 text-xs font-semibold  shadow-md">
             Featured
           </div>
         </div>
@@ -55,10 +55,10 @@ const ScholarshipCard = ({ scholarship, applications = [], setFilteredApplicatio
         </div>
 
         {/* Action Button */}
-        <div className="p-4 bg-gradient-to-r from-[#111827] to-[#0ab99d] text-center rounded-b-xl">
+        <div   onClick={handleSeeDetails} className=" p-4 bg-gradient-to-r from-[#111827] to-[#0ab99d] text-center rounded-r-[150px]">
           <button
-            onClick={handleSeeDetails}
-            className="bg-yellow-400 hover:bg-yellow-500 transition-all py-2 px-5 rounded-lg text-gray-900 font-semibold shadow-md hover:shadow-lg"
+          
+            className=" hover:text-custom1 transition-all py-2 px-5 rounded-lg text-white font-semibold  hover:shadow-lg"
           >
             View Details
           </button>
