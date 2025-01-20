@@ -82,13 +82,13 @@ const CheckOutForm = () => {
         console.log("transaction id", paymentIntent.id);
         setTransactionId(paymentIntent.id);
 
-        // now save the payment in data base
+        // save the payment in data base
 
         const Payment = {
           email: user.email,
           applicationFees: totalPrice,
           transactionId: paymentIntent.id,
-          data: new Date(), //utc data convert use moment js to
+          data: new Date(), 
           applicationIds: scholarship.map((item) => item._id),
           status: "pending",
         };
