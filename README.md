@@ -35,9 +35,10 @@ react router,firebase,react testify,react icon etc
 # Document link:https://docs.google.com/document/d/1xenG5ny3o_UfoLKi_gt1O72HwqY6Nzbk6rzQ5DiaqHo/edit?tab=t.0
 
 # Git-Hub Repository Link:https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-alazim-star
+# Git-Hub Repository Link server-side:https://github.com/Programming-Hero-Web-Course4/b10a12-server-side-alazim-star
 
-# live clint-site link:
-# live server-site link:
+# live clint-site link: https://b10a12-client-side.web.app/
+# live server-site link:https://b10a12-server-side-one.vercel.app/ 
 # Admin email: admin@admin.com
 # Admin password: Aa123456
 # Moderator email:scholar@scholar.com
