@@ -1,6 +1,11 @@
+# Assignment Name: b10a11-client-side (Scholarship Management Web Application)
+## assignment 12_category_020
+
+
+
 # Scholarship Management Web Application (Client-Side)
 
-This is the client-side of the Scholarship Management Web Application built using **React**. It provides a user-friendly interface to view, apply, and manage scholarships. Users can also view reviews, get detailed scholarship information, and register/login to access specific features.
+This is the client-side of the Scholarship Management Web Application built using. It provides a user-friendly interface to view, apply, and manage scholarships. Users can also view reviews, get detailed scholarship information, and register/login to access specific features.
 
 ## Features
 
@@ -22,15 +27,22 @@ This is the client-side of the Scholarship Management Web Application built usin
 - **Smastrom React Rating**: For displaying the star rating on reviews.
 
 ## Installation
+react router,firebase,react testify,react icon etc 
 
 ### Prerequisites
 
 - Node.js (v14 or above)
 - npm (v6 or above)
 
-### Clone the Repository
 
-To get started with the project locally, clone the repository:
+# Document link:https://docs.google.com/document/d/1xenG5ny3o_UfoLKi_gt1O72HwqY6Nzbk6rzQ5DiaqHo/edit?tab=t.0
 
-```bash
-git clone https://github.com/yourusername/scholarship-management-web-client.git
+# Git-Hub Repository Link:https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-alazim-star
+
+# live clint-site link:
+# Admin email: admin@admin.com
+# Admin password: Aa123456
+# Moderator email:scholar@scholar.com
+# Moderator password: Aa123456
+
+
