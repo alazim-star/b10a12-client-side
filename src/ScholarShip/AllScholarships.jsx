@@ -11,7 +11,7 @@ const AllScholarships = () => {
   const scholarshipsPerPage = 4; 
   // Fetch all scholarships
   useEffect(() => {
-    fetch('http://localhost:5000/allScholarship')
+    fetch('https://b10a12-server-side-one.vercel.app/allScholarship')
       .then((res) => res.json())
       .then((data) => {
         setScholarships(data);

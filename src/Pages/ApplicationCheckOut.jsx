@@ -26,7 +26,7 @@ const ApplicationCheckOut = ({ scholarship }) => {
   const handlePayment = async () => {
     try {
       const stripe = await stripePromise;
-      const response = await fetch("http://localhost:5000/paymentHistory", {
+      const response = await fetch("https://b10a12-server-side-one.vercel.app/paymentHistory", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -68,7 +68,7 @@ const ApplicationCheckOut = ({ scholarship }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/applications", {
+      const response = await fetch("https://b10a12-server-side-one.vercel.app/applications", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(appliedScholarshipData),

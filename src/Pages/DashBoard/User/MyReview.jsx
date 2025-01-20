@@ -19,7 +19,7 @@ const MyReview = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/reviews/${user?.email}`)
+        .get(`https://b10a12-server-side-one.vercel.app/reviews/${user?.email}`)
         .then((res) => {
           setReviews(res.data);
         })
@@ -40,7 +40,7 @@ const MyReview = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/reviews/${id}`)
+          .delete(`https://b10a12-server-side-one.vercel.app/reviews/${id}`)
           .then(() => {
             Swal.fire("Deleted!", "The review has been deleted.", "success");
             setReviews((prev) => prev.filter((rev) => rev._id !== id));
@@ -69,7 +69,7 @@ const MyReview = () => {
     if (isEditing) {
       // Update review
       axios
-        .put(`http://localhost:5000/reviews/${selectedReview._id}`, reviewData)
+        .put(`https://b10a12-server-side-one.vercel.app/reviews/${selectedReview._id}`, reviewData)
         .then(() => {
           Swal.fire("Updated!", "Your review has been updated.", "success");
           setReviews((prev) =>
@@ -83,7 +83,7 @@ const MyReview = () => {
     } else {
       // Add new review
       axios
-        .post("http://localhost:5000/reviews", reviewData)
+        .post("https://b10a12-server-side-one.vercel.app/reviews", reviewData)
         .then(() => {
           Swal.fire("Success!", "Your review has been submitted.", "success");
           setReviews((prev) => [...prev, reviewData]);

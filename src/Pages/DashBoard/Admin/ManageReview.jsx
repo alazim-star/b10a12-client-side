@@ -11,7 +11,7 @@ const ManageReview = () => {
   // Fetch all reviews
   useEffect(() => {
     axios
-      .get('http://localhost:5000/reviews')
+      .get('https://b10a12-server-side-one.vercel.app/reviews')
       .then((res) => setReviews(res.data))
       .catch((err) => console.error('Error fetching reviews:', err));
   }, []);
@@ -29,7 +29,7 @@ const ManageReview = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/reviews/${id}`)
+          .delete(`https://b10a12-server-side-one.vercel.app/reviews/${id}`)
           .then((res) => {
             if (res.data.deletedCount > 0) {
               Swal.fire('Deleted!', 'The review has been deleted.', 'success');

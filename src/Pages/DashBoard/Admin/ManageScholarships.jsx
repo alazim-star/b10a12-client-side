@@ -17,7 +17,7 @@ const ManageScholarships = () => {
 
   // Fetch scholarships from the backend
   useEffect(() => {
-    fetch("http://localhost:5000/allScholarship")
+    fetch("https://b10a12-server-side-one.vercel.app/allScholarship")
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((error) => console.error("Error fetching scholarships:", error));
@@ -85,7 +85,7 @@ const ManageScholarships = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:5000/allScholarship/${selectedScholarship._id}`, {
+    fetch(`https://b10a12-server-side-one.vercel.app/allScholarship/${selectedScholarship._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -119,7 +119,7 @@ const ManageScholarships = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/allScholarship/${id}`, {
+        fetch(`https://b10a12-server-side-one.vercel.app/allScholarship/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

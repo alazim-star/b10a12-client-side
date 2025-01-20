@@ -84,7 +84,7 @@ const AddScholarshipModerator = () => {
       description, // Add description to the newScholarship object
     };
 
-    fetch("http://localhost:5000/allScholarship", {
+    fetch("https://b10a12-server-side-one.vercel.app/allScholarship", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newScholarship),

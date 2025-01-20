@@ -27,7 +27,7 @@ const ViewDetails = () => {
   // Fetch reviews for the scholarship
   useEffect(() => {
     if (scholarship && scholarship._id) {
-      fetch(`http://localhost:5000/reviews/${scholarship._id}`)
+      fetch(`https://b10a12-server-side-one.vercel.app/reviews/${scholarship._id}`)
         .then(res => res.json())
         .then(data => {
           if (Array.isArray(data)) {
@@ -44,7 +44,7 @@ const ViewDetails = () => {
 
   // Fetch all reviews to display in Marquee
   useEffect(() => {
-    fetch('http://localhost:5000/reviews')
+    fetch('https://b10a12-server-side-one.vercel.app/reviews')
       .then((res) => res.json())
       .then((data) => setReviewss(data))
       .catch((error) => console.error("Error fetching reviews:", error));
@@ -76,7 +76,7 @@ const ViewDetails = () => {
 
     setIsSubmitting(true);
 
-    fetch('http://localhost:5000/applications', {
+    fetch('https://b10a12-server-side-one.vercel.app/applications', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(ApplyingData),
@@ -113,7 +113,7 @@ const ViewDetails = () => {
       photoURL: scholarship.photoURL
     };
 
-    fetch('http://localhost:5000/reviews', {
+    fetch('https://b10a12-server-side-one.vercel.app/reviews', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(reviewData),

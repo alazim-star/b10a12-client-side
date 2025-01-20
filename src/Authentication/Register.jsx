@@ -20,11 +20,11 @@ const Register = () => {
 const {createUser,updateUserProfile}=useContext(AuthContext)
 const navigate=useNavigate()
 const onSubmit=data=>{
-  console.log(data);
+  // console.log(data);
   createUser(data.email,data.password)
   .then(result=>{
     const loggedUser=result.user 
-    console.log(loggedUser);
+    // console.log(loggedUser);
     updateUserProfile(data.name,data.photoURL)
     .then(()=>{
 // create user entry in the database 
@@ -33,10 +33,10 @@ const userInfo={
   email:data.email,
  photoURL:data.photoURL
 }
-axiosPublic.post('http://localhost:5000/users',userInfo)
+axiosPublic.post('https://b10a12-server-side-one.vercel.app/users',userInfo)
 .then(res=>{
   if (res.data.insertedId) {
-    console.log('user added successfully');
+    // console.log('user added successfully');
           // console.log("user profile updated");
           reset()
           Swal.fire({

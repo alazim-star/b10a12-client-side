@@ -27,7 +27,7 @@ const MyApplication = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/applications/${user?.email}`)
+        .get(`https://b10a12-server-side-one.vercel.app/applications/${user?.email}`)
         .then((res) => {
           setApplications(res.data);
         })
@@ -48,7 +48,7 @@ const MyApplication = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/applications/${id}`)
+          .delete(`https://b10a12-server-side-one.vercel.app/applications/${id}`)
           .then((res) => {
             if (res.data.deletedCount > 0) {
               Swal.fire("Deleted!", "The application has been deleted.", "success");
@@ -70,7 +70,7 @@ const MyApplication = () => {
     };
 
     axios
-      .put(`http://localhost:5000/applications/${selectedApplication._id}`, updatedData)
+      .put(`https://b10a12-server-side-one.vercel.app/applications/${selectedApplication._id}`, updatedData)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           Swal.fire("Updated!", "Your application has been updated.", "success");
@@ -103,7 +103,7 @@ const MyApplication = () => {
     };
 
     axios
-      .post("http://localhost:5000/reviews", reviewData)
+      .post("https://b10a12-server-side-one.vercel.app/reviews", reviewData)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire("Success", "Review added successfully!", "success");
@@ -117,7 +117,7 @@ const MyApplication = () => {
 
  // Fetch scholarships from the backend
    useEffect(() => {
-     fetch("http://localhost:5000/allScholarship")
+     fetch("https://b10a12-server-side-one.vercel.app/allScholarship")
        .then((res) => res.json())
        .then((data) => setData(data))
        .catch((error) => console.error("Error fetching scholarships:", error));

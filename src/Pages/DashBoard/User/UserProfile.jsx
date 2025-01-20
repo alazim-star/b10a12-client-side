@@ -13,7 +13,7 @@ const UserProfile = () => {
     // Fetch profile details if a user is logged in and has an email
     if (user && user.email) {
       axios
-        .get(`http://localhost:5000/users/${user.email}`) 
+        .get(`https://b10a12-server-side-one.vercel.app/users/${user.email}`) 
         .then((res) => {
           setProfileDetails(res.data);
           setLoading(false);

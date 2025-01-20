@@ -78,7 +78,7 @@ const router = createBrowserRouter([
         path: "/viewDetails/:id",
         element: <ViewDetails></ViewDetails>,
         loader: async ({ params }) => {
-          const res = await fetch(`http://localhost:5000/allScholarship`);
+          const res = await fetch(`https://b10a12-server-side-one.vercel.app/allScholarship`);
           const data = await res.json();
           const singleData = data.find(d => d._id === params.id);
           return singleData; 

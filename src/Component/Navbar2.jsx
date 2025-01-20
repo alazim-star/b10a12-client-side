@@ -1,9 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { AuthContext } from '../AuthProvider/AuthProvider';
-
-
-
+import React, { useContext, useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Navbar2 = () => {
   const { loading, user, signOutUser } = useContext(AuthContext);
@@ -32,7 +29,6 @@ const Navbar2 = () => {
 
   const links = (
     <>
- 
       <NavLink
         to="/"
         className="hover:text-yellow-400 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 p-3 transition mx-4 border-b-4 border-yellow-400"
@@ -49,17 +45,12 @@ const Navbar2 = () => {
         to="/dashboard/cartBoard"
         className="hover:text-yellow-400 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 p-3 transition mx-4 border-b-4 border-yellow-400"
       >
-      Dashboard
+        Dashboard
       </NavLink>
-
-      
     </>
   );
 
   return (
-
-
-  
     <nav
       className={`${
         scrolled
@@ -101,8 +92,8 @@ const Navbar2 = () => {
           {/* Logo and Name */}
           <div className="flex items-center">
             <img
-              className="w-10 h-10 lg:w-24 lg:h-24 "
-              src="https://i.ibb.co.com/1TQ6L8Y/Blue-Modern-Free-Academy-Logo-1-removebg-preview.png"
+              className="w-10 h-10 lg:w-24 lg:h-24"
+              src="https://i.ibb.co/1TQ6L8Y/Blue-Modern-Free-Academy-Logo-1-removebg-preview.png"
               alt="Logo"
             />
             <p className="uppercase lg:text-2xl font-bold">Scholar</p>
@@ -115,19 +106,24 @@ const Navbar2 = () => {
         {/* Login/Logout Section */}
         <div className="items-center">
           {loading ? (
-           <p>Loading...</p>
+            <p>Loading...</p>
           ) : user ? (
             <div className="flex items-center lg:space-x-4">
-              {user.photoURL && (
+              {/* Ensure the image is displayed only if photoURL is valid */}
+              {user.photoURL ? (
                 <img
                   src={user.photoURL}
                   alt="User Profile"
                   className="w-10 h-10 rounded-full border border-white"
+                  referrerPolicy="no-referrer" // Ensures images from external URLs load correctly
                 />
+              ) : (
+                <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-white">
+                  {user.email?.charAt(0).toUpperCase()}
+                </div>
               )}
               <p className="text-sm lg:text-md text-custom1">
                 Welcome, <span className="font-bold">{user.email}</span>
-              
               </p>
               <button
                 onClick={handleSignOut}
@@ -147,8 +143,6 @@ const Navbar2 = () => {
         </div>
       </div>
     </nav>
-   
-
   );
 };
 

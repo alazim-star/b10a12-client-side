@@ -18,7 +18,7 @@ const ManageAppliedApplication = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get('http://localhost:5000/applications')
+        .get('https://b10a12-server-side-one.vercel.app/applications')
         .then((res) => setApplications(res.data))
         .catch((err) => console.error('Error fetching applications:', err));
     }
@@ -28,7 +28,7 @@ const ManageAppliedApplication = () => {
   const submitFeedback = () => {
     if (selectedApplication?._id) {
       axios
-        .patch(`http://localhost:5000/applications/${selectedApplication._id}`, { feedback })
+        .patch(`https://b10a12-server-side-one.vercel.app/applications/${selectedApplication._id}`, { feedback })
         .then(() => {
           Swal.fire('Feedback Submitted', 'Feedback saved successfully.', 'success');
           setApplications((prev) =>
@@ -47,7 +47,7 @@ const ManageAppliedApplication = () => {
   const updateStatus = () => {
     if (selectedApplication?._id) {
       axios
-        .patch(`http://localhost:5000/applications/${selectedApplication._id}`, { status })
+        .patch(`https://b10a12-server-side-one.vercel.app/applications/${selectedApplication._id}`, { status })
         .then(() => {
           Swal.fire('Status Updated', 'Application status updated successfully.', 'success');
           setApplications((prev) =>
@@ -75,7 +75,7 @@ const ManageAppliedApplication = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/applications/${id}`)
+          .delete(`https://b10a12-server-side-one.vercel.app/applications/${id}`)
           .then((res) => {
             if (res.data.deletedCount > 0) {
               Swal.fire('Cancelled!', 'The application has been cancelled.', 'success');

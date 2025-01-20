@@ -53,11 +53,11 @@ const Login = () => {
 
         // Save JWT token
         axios
-          .post('http://localhost:5000/jwt', user, {
+          .post('https://b10a12-server-side-one.vercel.app/jwt', user, {
             withCredentials: true,
           })
           .then((res) => {
-            console.log('JWT token saved successfully.');
+            // console.log('JWT token saved successfully.');
           
           });
 
@@ -66,14 +66,14 @@ const Login = () => {
         // Update last login info
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
         const loginInfo = { email, lastSignInTime };
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://b10a12-server-side-one.vercel.app/users`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(loginInfo),
         })
           .then((res) => res.json())
           .then(() => {
-            console.log('Last login info updated.');
+            // console.log('Last login info updated.');
           })
           .catch((error) => console.error(error));
       })

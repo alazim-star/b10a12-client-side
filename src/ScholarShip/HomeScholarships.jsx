@@ -8,10 +8,10 @@ const HomeScholarships = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:5000/allScholarship')
+    fetch('https://b10a12-server-side-one.vercel.app/allScholarship')
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setScholarships(data);
         setLoading(false);
       });
