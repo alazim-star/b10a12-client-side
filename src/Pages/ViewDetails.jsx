@@ -138,7 +138,7 @@ const ViewDetails = () => {
   return (
     <div>
       {/* Other content remains unchanged */}
-<div className='flex'>
+<div className='lg:flex'>
   
       {/* Reviews Section */}
       <div className="text-white rounded-xl shadow-md p-6 mt-8 w-[400px] h-[400px] bg-gradient-to-r from-blue-500 to-teal-500 ">

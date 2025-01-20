@@ -15,7 +15,7 @@ const ScholarshipCard = ({ scholarship, applications = [], setFilteredApplicatio
   };
 
   return (
-    <div className="w-[600px] mt-4">
+    <div className="lg:w-[600px] mt-4">
       {/* Scholarship Card */}
       <div className="border   shadow-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-3xl rounded-tl-[150px] rounded-br-[150px]  ">
         {/* Scholarship Logo */}
