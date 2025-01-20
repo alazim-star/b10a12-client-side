@@ -1,9 +1,6 @@
-# Assignment Name: b10a11-client-side (Scholarship Management Web Application)
+# Assignment Name: b10a12-client-side (Scholarship Management Web Application)
 ## assignment 12_category_020
 
-
-
-# Scholarship Management Web Application (Client-Side)
 
 This is the client-side of the Scholarship Management Web Application built using. It provides a user-friendly interface to view, apply, and manage scholarships. Users can also view reviews, get detailed scholarship information, and register/login to access specific features.
 
