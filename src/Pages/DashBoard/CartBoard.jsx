@@ -45,7 +45,7 @@ const CartBoard = () => {
     datasets: [
       {
         label: "Scholarships Distribution",
-        data: [40, 30, 20, 10], // Example percentages
+        data: [40, 30, 20, 10], 
         backgroundColor: [
           "rgba(255, 99, 132, 0.6)",
           "rgba(54, 162, 235, 0.6)",

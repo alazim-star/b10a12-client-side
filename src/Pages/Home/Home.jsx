@@ -5,8 +5,6 @@ import Banner from '../../Component/Banner';
 import GoldenStudent from '../../Component/GoldenStudent';
 import LocationMap from '../../Component/LocationMap ';
 import Review from '../../Component/Review';
-
-
 import HomeScholarships from '../../ScholarShip/HomeScholarships';
 
 
