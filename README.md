@@ -40,6 +40,7 @@ react router,firebase,react testify,react icon etc
 # Git-Hub Repository Link:https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-alazim-star
 
 # live clint-site link:
+# live server-site link:
 # Admin email: admin@admin.com
 # Admin password: Aa123456
 # Moderator email:scholar@scholar.com
