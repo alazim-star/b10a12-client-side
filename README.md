@@ -91,19 +91,20 @@ The Scholarship Management Web Application provides a user-friendly interface to
 🔗 **Live Website**: [Scholarship Management](https://b10a12-client-side.web.app/)  
 🔗 **Server-Site**: [Server-Site Link](https://b10a12-server-side-one.vercel.app/)  
 
-## Admin email: admin@admin.com
-## Admin password: Aa123456
-## Moderator email:scholar@scholar.com
-## Moderator password: Aa123456
+** Admin email: admin@admin.com
+** Admin password: Aa123456
+** Moderator email:scholar@scholar.com
+** Moderator password: Aa123456
 
 
 ## **Document**: [View Document](https://docs.google.com/document/d/1xenG5ny3o_UfoLKi_gt1O72HwqY6Nzbk6rzQ5DiaqHo/edit?tab=t.0)  
+
 
 ## 📂 Project Setup
 
 ```bash
 # Clone the repository
-git clone https://github.com/alazim-star/b10a11-client-side.git
+git clone https://github.com/alazim-star/b10a12-client-side.git
 
 # Install dependencies
 npm install
