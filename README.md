@@ -99,15 +99,11 @@ The Scholarship Management Web Application provides a user-friendly interface to
 
 ## **Document**: [View Document](https://docs.google.com/document/d/1xenG5ny3o_UfoLKi_gt1O72HwqY6Nzbk6rzQ5DiaqHo/edit?tab=t.0)  
 
-
 ## 📂 Project Setup
 
 ```bash
 # Clone the repository
-git clone https://github.com/programming-hero-web-course2/b10a8-gadget-heaven-alazim-star.git
-
-# Navigate to the project directory
-cd b10a12-client-side
+git clone https://github.com/alazim-star/b10a11-client-side.git
 
 # Install dependencies
 npm install
@@ -115,6 +111,15 @@ npm install
 # Start the development server
 npm run dev
 
+# React-Router setup
+npm install react-router-dom
+npm install localforage match-sorter sort-by
+npm run dev
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (including npm)
+- [MongoDB](https://www.mongodb.com/) (or use a cloud solution like MongoDB Atlas)
 
 
 
