@@ -79,8 +79,8 @@ The Scholarship Management Web Application provides a user-friendly interface to
 <div align="center">
   <table>
     <tr>
-      <td><img src="https://i.ibb.co.com/Vc154CDr/dsd.jpg" width="300" alt="Gadget Haven Screenshot 1"></td>
-      <td><img src="https://i.ibb.co.com/4RyrByd6/fe.jpg" width="300" alt="Gadget Haven Screenshot 2"></td>
+      <td><img src="https://i.ibb.co.com/8Lqs1k14/sd.jpg" width="300" alt="Gadget Haven Screenshot 1"></td>
+      <td><img src="https://i.ibb.co.com/PsgdgTbX/ddd.jpg" width="300" alt="Gadget Haven Screenshot 2"></td>
     </tr>
   </table>
 </div>
