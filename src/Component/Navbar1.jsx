@@ -1,30 +1,32 @@
 import React from "react";
-import { FaFacebook, FaInstagram, FaSkype, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaPhone, FaRegEnvelopeOpen, FaSkype, FaTwitter } from "react-icons/fa";
 import Theme from "./Theme";
+import { BsTelephoneOutbound } from "react-icons/bs";
+import { IoLocationOutline } from "react-icons/io5";
 
 const Navbar1 = () => {
   return (
-    <div className="bg-base-100 shadow-lg">
+    <div className="shadow-lg bg-gradient-to-r from-blue-500 to-teal-500">
       {/* Top Bar */}
-      <div className="text-white lg:flex justify-between items-center px-6 py-3 text-sm bg-gradient-to-r from-blue-500 to-teal-500 ">
+      <div className="text-white lg:flex justify-between items-center  py-3 text-sm container mx-auto ">
         {/* Contact Info */}
-        <div className="lg:flex items-center space-x-6">
-          <div className="flex items-center space-x-3">
-            <i className="fas fa-phone-alt text-yellow-300"></i>
-            <span>(568) 367-987-237</span>
+        <div className="flex justify-around gap-5 ">
+          <div className="flex gap-2 items-center">
+          <BsTelephoneOutbound />
+            <span>(+009)5452</span>
           </div>
-          <div className="flex items-center space-x-3">
-            <i className="fas fa-envelope text-yellow-300"></i>
-            <span>govillage@gmail.com</span>
+          <div className="flex gap-2 items-center">
+          <FaRegEnvelopeOpen />
+            <span>whitestone@gmail.com</span>
           </div>
-          <div className="flex items-center space-x-3">
-            <i className="fas fa-map-marker-alt text-yellow-300"></i>
-            <span>Hudson, Wisconsin(WI), 54016</span>
+          <div className="flex gap-2 items-center">
+          <IoLocationOutline />
+            <span>White stone,WishDream (WD), 24563</span>
           </div>
         </div>
 
         {/* Right Section: Theme, Language, Socials */}
-        <div className="flex items-center space-x-6">
+        <div className="flex justify-between lg:space-x-6 ">
           {/* Theme Toggle */}
           <Theme />
 
@@ -35,7 +37,7 @@ const Navbar1 = () => {
           </select>
 
           {/* Social Media Icons */}
-          <div className="flex space-x-4">
+          <div className="flex space-x-3">
             <a
               href="#"
               className="hover:text-yellow-400 hover:scale-125 transition-transform duration-300"

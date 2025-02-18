@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
+
 const ScholarshipCard = ({ scholarship, applications = [], setFilteredApplications }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -15,13 +16,14 @@ const ScholarshipCard = ({ scholarship, applications = [], setFilteredApplicatio
   };
 
   return (
-    <div className="lg:w-[600px] mt-4">
+    <div className=" mt-4">
+   
       {/* Scholarship Card */}
-      <div className="border   shadow-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-3xl rounded-tl-[150px] rounded-br-[150px]  ">
+      <div className="border   shadow-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-3xl rounded-tl-[150px] rounded-br-[150px] lg:w-full w-[450px] ">
         {/* Scholarship Logo */}
         <div className="relative">
           <img
-            className="w-full h-52 object-cover "
+            className="w-full h-52  object-cover "
             src={scholarship?.universityLogo || "default-logo.png"}
             alt={scholarship?.universityName || "University Logo"}
           />
@@ -31,7 +33,7 @@ const ScholarshipCard = ({ scholarship, applications = [], setFilteredApplicatio
         </div>
 
         {/* Scholarship Details */}
-        <div className="p-5 space-y-4">
+        <div className="p-2">
           <h3 className="text-2xl font-bold text-gray-800">
             {scholarship?.scholarshipCategory || "Category not available"}
           </h3>

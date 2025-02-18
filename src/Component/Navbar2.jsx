@@ -29,24 +29,57 @@ const Navbar2 = () => {
 
   const links = (
     <>
+   <NavLink
+  to="/"
+  className={({ isActive }) =>
+    `hover:text-custom1  rounded-xl  hover:translate-y-1  p-3 transition mx-4 border-b-4 border-custom1 ${
+      isActive ? "text-custom1  " : ""
+    }`
+  }
+>
+  Home
+</NavLink>
+<NavLink
+  to="/allScholarship"
+  className={({ isActive }) =>
+    `hover:text-custom1  rounded-xl  hover:translate-y-1  p-3 transition mx-4 border-b-4 border-custom1 ${
+      isActive ? "text-custom1  " : ""
+    }`
+  }
+>
+ All Scholarship
+</NavLink>
+     
       <NavLink
-        to="/"
-        className="hover:text-yellow-400 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 p-3 transition mx-4 border-b-4 border-yellow-400"
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="/allScholarship"
-        className="hover:text-yellow-400 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 p-3 transition mx-4 border-b-4 border-yellow-400"
-      >
-        All Scholarship
-      </NavLink>
-      <NavLink
-        to="/dashboard/cartBoard"
-        className="hover:text-yellow-400 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 p-3 transition mx-4 border-b-4 border-yellow-400"
-      >
-        Dashboard
-      </NavLink>
+   to="/dashboard/cartBoard"
+   className={({ isActive }) =>
+    `hover:text-custom1  rounded-xl  hover:translate-y-1  p-3 transition mx-4 border-b-4 border-custom1 ${
+      isActive ? "text-custom1  " : ""
+    }`
+  }
+>
+Dashboard
+</NavLink>
+<NavLink
+   to="/dashboard/cartBoard"
+   className={({ isActive }) =>
+    `hover:text-custom1  rounded-xl  hover:translate-y-1  p-3 transition mx-4 border-b-4 border-custom1 ${
+      isActive ? "text-custom1  " : ""
+    }`
+  }
+>
+Profile
+</NavLink>
+<NavLink
+   to="/dashboard/cartBoard"
+   className={({ isActive }) =>
+    `hover:text-custom1  rounded-xl  hover:translate-y-1  p-3 transition mx-4 border-b-4 border-custom1 ${
+      isActive ? "text-custom1  " : ""
+    }`
+  }
+>
+Contact
+</NavLink>
     </>
   );
 
@@ -56,9 +89,9 @@ const Navbar2 = () => {
         scrolled
           ? "backdrop-blur-sm bg-white/60 text-black"
           : "bg-[#111827] text-white"
-      } w-full sticky top-0 z-50 transition-all duration-300`}
+      } w-full sticky top-0 z-50 transition-all duration-300 `}
     >
-      <div className="navbar h-20 px-4 lg:px-10">
+      <div className="navbar h-14 container mx-auto  ">
         <div className="navbar-start">
           {/* Mobile Dropdown */}
           <div className="dropdown">
@@ -84,31 +117,31 @@ const Navbar2 = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content text-white bg-[#111827] rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content text-white bg-[#111827] rounded-box z-[1] mt-3 w-52 shadow"
             >
               {links}
             </ul>
           </div>
           {/* Logo and Name */}
-          <div className="flex items-center">
+          <div className="flex items-center ">
             <img
-              className="w-10 h-10 lg:w-24 lg:h-24"
-              src="https://i.ibb.co/1TQ6L8Y/Blue-Modern-Free-Academy-Logo-1-removebg-preview.png"
+              className="w-10 h-10 lg:w-10 lg:h-10 "
+              src="https://i.ibb.co.com/xK2W4sJc/Untitled-design-1-removebg-preview.png"
               alt="Logo"
             />
-            <p className="uppercase lg:text-2xl font-bold">Scholar</p>
+            <p className="uppercase lg:text-2xl font-bold lg:ml-2 ">Scholar</p>
           </div>
         </div>
         {/* Desktop Links */}
-        <div className="navbar hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
+        <div className="navbar hidden lg:flex ">
+          <ul className="menu menu-horizontal">{links}</ul>
         </div>
         {/* Login/Logout Section */}
-        <div className="items-center">
+        <div className="items-center ">
           {loading ? (
-            <p>Loading...</p>
+       <span className="loading loading-spinner text-accent"></span>
           ) : user ? (
-            <div className="flex items-center lg:space-x-4">
+            <div className="flex items-center justify-end lg:space-x-4">
               {/* Ensure the image is displayed only if photoURL is valid */}
               {user.photoURL ? (
                 <img
@@ -127,7 +160,7 @@ const Navbar2 = () => {
               </p>
               <button
                 onClick={handleSignOut}
-                className="hover:text-yellow-400 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 lg:p-3 p-2 transition border-b-4 border-yellow-400"
+                className="hover:text-custom1 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 lg:p-3 p-2 transition border-b-4 border-custom1"
               >
                 SignOut
               </button>
@@ -135,7 +168,7 @@ const Navbar2 = () => {
           ) : (
             <Link
               to="/login"
-              className="hover:text-yellow-400 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 p-3 transition border-b-4 border-yellow-400"
+              className="hover:text-custom1 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 p-3  transition border-b-4 border-custom1"
             >
               Login
             </Link>

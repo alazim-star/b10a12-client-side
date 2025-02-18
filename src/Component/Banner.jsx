@@ -1,12 +1,12 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Banner = () => {
 
     
     return (
-        <div>
+        <div className="">
             <Carousel 
                 autoPlay
                 infiniteLoop
@@ -16,9 +16,10 @@ const Banner = () => {
                 showIndicators={true} // Shows the dots for navigation
             >
               {/* First Slide */}
-<div className="relative flex flex-col md:flex-row justify-center items-center bg-gradient-to-br from-white via-gray-50 to-gray-100 p-10 gap-8 overflow-hidden">
+
+<div className="relative flex flex-col md:flex-row justify-center items-center  bg-gradient-to-br from-white via-gray-50 to-gray-100 p-10 gap-8 overflow-hidden">
     {/* Text Content */}
-    <div className="text-center md:text-left max-w-md z-10">
+    <div className="text-center md:text-left max-w-md z-10 ">
         <p className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
             Unlock Your Potential <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-green-400">
@@ -28,17 +29,19 @@ const Banner = () => {
         <p className="text-sm md:text-base text-gray-600 mb-6">
             Discover endless opportunities to grow and achieve your dreams with our tailored scholarships.
         </p>
-        <button className="relative group inline-flex items-center px-6 py-3 text-lg font-semibold text-white bg-gradient-to-r from-green-400 to-teal-500 rounded-lg shadow-lg hover:shadow-xl hover:from-teal-500 hover:to-green-400 focus:ring-4 focus:ring-teal-200 transition-transform transform duration-300 ease-out">
+       <NavLink to="/allScholarship">
+       <button className="relative group inline-flex items-center px-6 py-3 text-lg font-semibold text-white bg-gradient-to-r from-green-400 to-teal-500 rounded-lg shadow-lg hover:shadow-xl hover:from-teal-500 hover:to-green-400 focus:ring-4 focus:ring-teal-200 transition-transform transform duration-300 ease-out">
             <span className="absolute inset-0 bg-white opacity-10 blur-lg rounded-lg group-hover:scale-110 transition-transform"></span>
             <span className="relative">Apply Now</span>
         </button>
+       </NavLink>
     </div>
 
     {/* Image Content */}
     <div className="relative group">
         {/* Image */}
         <img
-            className="w-full max-w-lg rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
+            className="w-full max-w-screen-xl  rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
             src="https://i.ibb.co/dBs35xf/shutterstock-183400235.png"
             alt="Scholarship"
         />
@@ -61,6 +64,7 @@ const Banner = () => {
 </div>
 
 
+
 {/* Second Slide */}
 <div className="relative flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-blue-50 via-white to-teal-50 p-10 gap-8 overflow-hidden">
     <div className="text-center md:text-left max-w-md z-10">
@@ -73,16 +77,18 @@ const Banner = () => {
         <p className="text-sm md:text-base text-gray-600 mb-6">
             Take the first step toward a brighter tomorrow. Our scholarships are your gateway to success!
         </p>
-        <button className="relative inline-flex items-center px-6 py-3 text-lg font-semibold text-white transition-all duration-300 ease-out bg-gradient-to-r from-blue-500 to-teal-500 rounded-lg hover:from-teal-600 hover:to-blue-600 focus:ring-4 focus:ring-blue-200">
+       <NavLink to="/allScholarship">
+       <button className="relative inline-flex items-center px-6 py-3 text-lg font-semibold text-white transition-all duration-300 ease-out bg-gradient-to-r from-blue-500 to-teal-500 rounded-lg hover:from-teal-600 hover:to-blue-600 focus:ring-4 focus:ring-blue-200">
             <span className="absolute inset-0 transition-transform transform scale-100 bg-white opacity-10 blur-md rounded-lg group-hover:scale-110"></span>
             <span className="relative">Apply Now</span>
         </button>
+       </NavLink>
     </div>
     
     {/* Image Content */}
     <div className="relative group">
         <img
-            className="w-full max-w-lg rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
+            className="w-full max-w-screen-xl rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
             src="https://i.ibb.co/fXczpD1/Fully-funded-opportunity-for-students-with-Manaaki-Scholarship-in-New-Zealand.jpg"
             alt="Scholarship"
         />
@@ -119,18 +125,18 @@ const Banner = () => {
         <p className="text-sm md:text-base text-gray-600 mb-6">
             Empower your dreams with the right opportunities. Take the first step toward achieving your goals with scholarships designed for you.
         </p>
-        <Link to="/allScholarship">
+        <NavLink to="/allScholarship">
         <button className="group relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg bg-gradient-to-br from-green-400 to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
             <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                 <span className="flex items-center gap-2">
                     <i className="fas fa-graduation-cap"></i> Apply Now
                 </span>
             </span>
-        </button></Link>
+        </button></NavLink>
     </div>
     <div className="relative group">
         <img
-            className="w-full max-w-lg rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
+            className="w-full max-w-screen-xl  rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
             src="https://i.ibb.co/tYRTGcv/classmates-writing-learning-study-session-23-2149265745.jpg"
             alt="Scholarship"
         />
@@ -158,14 +164,14 @@ const Banner = () => {
         <p className="text-sm md:text-base text-gray-600 mb-6">
             Take the first step towards unlocking new opportunities. Explore scholarships designed for aspiring achievers like you.
         </p>
-    <Link to='/allScholarship'>
+    <NavLink to='/allScholarship'>
     <button className="hover:bg-gradient-to-r hover:from-indigo-600 hover:to-blue-500 transition-all transform hover:scale-105 hover:shadow-lg p-4 rounded-lg bg-[#0ab99d] text-white font-semibold">
             Apply Now
-        </button></Link>
+        </button></NavLink>
     </div>
     <div className="relative group">
         <img
-            className="w-full max-w-lg rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
+            className="w-full max-w-screen-xl  rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
             src="https://i.ibb.co/D9qXkRD/look-code.jpg"
             alt="Scholarship"
         />
@@ -192,14 +198,14 @@ const Banner = () => {
         <p className="text-md text-gray-600 mb-6">
             Your actions today shape the world of tomorrow. Seize the opportunity to create a meaningful impact through education.
         </p>
-       <Link t="/allScholarship">
+       <NavLink t="/allScholarship">
        <button className="hover:bg-[#0ab99d] hover:scale-105 hover:shadow-lg transition-all p-4 rounded-lg border-b-4 border-[#0ab99d] bg-[#111827] text-white font-semibold">
             Apply Now
-        </button></Link>
+        </button></NavLink>
     </div>
     <div className="relative group">
         <img
-            className="w-full max-w-lg rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
+            className="w-full max-w-screen-xl  rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
             src="https://i.ibb.co/yhbyVcM/group-young-students-front-school-building.jpg"
             alt="Scholarship"
         />
@@ -214,23 +220,23 @@ const Banner = () => {
 
                 
                 {/* Sixth Slide */}
-<div className="flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-blue-50 via-blue-100 to-green-50 p-10 gap-8 relative">
-    <div className="text-center md:text-left max-w-md animate-fadeIn">
-        <p className="text-4xl md:text-5xl text-[#111827] font-extrabold leading-tight mb-6">
-            Invest in Your Education <br />
-            <span className="text-[#0ab99d]">Apply for Scholarships and Grow!</span>
+<div className="flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-green-50 via-teal-100 to-green-50 p-10 gap-8 relative">
+    <div className="text-center md:text-left max-w-md animate-slideIn">
+        <p className="text-4xl md:text-5xl text-[#111827] font-extrabold leading-tight mb-4">
+          Your Dream <br />
+            <span className="text-[#0ab99d]">Our Follow Up!</span>
         </p>
         <p className="text-md text-gray-600 mb-6">
-            Unlock your potential with scholarships designed to pave the way for your academic and professional success.
-        </p>allScholarship
-        <Link to='/allScholarship'>
+           We designed scholarships to pave the way for your academic and professional success.
+        </p>
+        <NavLink to='/allScholarship'>
         <button className="hover:bg-[#0ab99d] hover:scale-105 hover:shadow-lg transition-all p-4 rounded-lg border-b-4 border-[#0ab99d] bg-[#111827] text-white font-semibold">
             Apply Now
-        </button></Link>
+        </button></NavLink>
     </div>
     <div className="relative group">
         <img
-            className="w-full max-w-lg rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
+            className="w-full max-w-screen-xl rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
             src="https://i.ibb.co/9Z4nhgg/young-people-looking-victorious.jpg"
             alt="Scholarship"
         />

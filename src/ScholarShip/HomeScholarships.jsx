@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ScholarshipCard from './ScholarshipCard';
 import { useNavigate } from 'react-router-dom';
+import SectionTitle from '../Shard/SectionTitle';
 
 const HomeScholarships = () => {
   const [scholarships, setScholarships] = useState([]);
@@ -21,12 +22,15 @@ const HomeScholarships = () => {
   const scholarshipsToShow = scholarships.slice(0, 6);
 
   return (
-    <div>
+    <div className='container mx-auto'>
+      <SectionTitle subHeading="New Features" heading="Our new scholarship"></SectionTitle>
       {loading ? (
-        <p className="text-center text-lg">Loading scholarships...</p>
+     <div className='text-center '>
+        <span className="w-96 h-96 loading loading-spinner text-accent"></span>
+     </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
             {scholarshipsToShow.map((scholarship) => (
               <ScholarshipCard key={scholarship._id} scholarship={scholarship} />
             ))}
