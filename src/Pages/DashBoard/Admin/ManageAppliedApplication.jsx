@@ -163,33 +163,29 @@ const ManageAppliedApplication = () => {
                   
 
                 </td>
-                <td className="px-4 py-2 border flex gap-2 justify-center">
-                  <button
-                    className="px-2 py-1 bg-blue-500 text-white rounded"
-                    onClick={() => {
-                      setSelectedApplication(application);
-                      setModalType('details');
-                    }}
-                  >
-                    Details
-                  </button>
-                  <button
-                    className="px-2 py-1 bg-yellow-500 text-white rounded"
-                    onClick={() => {
-                      setSelectedApplication(application);
-                      setModalType('feedback');
-                    }}
-                  >
-                    Feedback
-                  </button>
-               
-                  <button
-                    className="px-2 py-1 bg-red-500 text-white rounded"
-                    onClick={() => handleCancel(application._id)}
-                  >
-                    Cancel
-                  </button>
-                </td>
+                <td className="px-4 py-2 border text-center">
+  <select
+    className="px-3 py-1 border rounded bg-gray-100"
+    onChange={(e) => {
+      const value = e.target.value;
+      if (value === "details") {
+        setSelectedApplication(application);
+        setModalType("details");
+      } else if (value === "feedback") {
+        setSelectedApplication(application);
+        setModalType("feedback");
+      } else if (value === "cancel") {
+        handleCancel(application._id);
+      }
+    }}
+  >
+    <option value="">Select Action</option>
+    <option value="details">View Details</option>
+    <option value="feedback">Give Feedback</option>
+    <option value="cancel">Cancel Application</option>
+  </select>
+</td>
+
               </tr>
             ))}
           </tbody>
