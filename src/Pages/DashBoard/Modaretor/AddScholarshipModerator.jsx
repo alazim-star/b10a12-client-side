@@ -302,7 +302,7 @@ const AddScholarshipModerator = () => {
           </div>
           <button
             type="submit"
-            className="btn bg-green-600 w-full text-white hover:bg-green-700"
+            className="hover:bg-[#0ab99d] hover:scale-105 hover:shadow-lg transition-all w-full p-4 rounded-lg border-b-4 border-[#0ab99d] bg-[#111827] text-white font-semibold"
           >
             Add Scholarship
           </button>

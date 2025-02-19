@@ -23,7 +23,7 @@ const GoldenStudent = () => {
             rowSpan: "row-span-2",
         },
         {
-            src: "https://i.ibb.co.com/8M13j0D/news-20171122-SCOM-Feature.jpg",
+            src: "https://i.ibb.co.com/GfG2crTG/41534147131-3d40e439cc-b.jpg",
             colSpan: "col-span-2",
             rowSpan: "row-span-2",
         },

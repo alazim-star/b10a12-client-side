@@ -17,7 +17,7 @@ const Banner = () => {
             >
               {/* First Slide */}
 
-<div className=" relative flex flex-col md:flex-row justify-center items-center  bg-gradient-to-br from-white via-gray-50 to-gray-100  gap-8 overflow-hidden container mx-auto ">
+<div className=" relative flex flex-col md:flex-row justify-center items-center  bg-gradient-to-br from-white via-gray-50 to-gray-100  gap-8 overflow-hidden  ">
     {/* Text Content */}
     <div className="text-center md:text-left max-w-md z-10  ">
         <p className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
@@ -66,7 +66,7 @@ const Banner = () => {
 
 
 {/* Second Slide */}
-<div className="container mx-auto relative flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-blue-50 via-white to-teal-50  gap-8 overflow-hidden">
+<div className=" relative flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-blue-50 via-white to-teal-50  gap-8 overflow-hidden">
     <div className="text-center md:text-left max-w-md z-10">
         <p className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
             Shape Your Future <br />
@@ -114,7 +114,7 @@ const Banner = () => {
 
 
               {/* Third Slide */}
-<div className="container mx-auto relative flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-green-50 to-blue-50  gap-8 overflow-hidden">
+<div className="relative flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-green-50 to-blue-50  gap-8 overflow-hidden">
     <div className="text-center md:text-left max-w-md z-10">
         <p className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
             Dream Big, Achieve Bigger <br />
@@ -153,7 +153,7 @@ const Banner = () => {
 </div>
 
     {/* Fourth Slide */}
-<div className="container mx-auto relative flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-blue-50 via-indigo-100 to-purple-50  gap-8 overflow-hidden">
+<div className=" relative flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-blue-50 via-indigo-100 to-purple-50  gap-8 overflow-hidden">
     <div className="text-center md:text-left max-w-md z-10">
         <p className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
             Your Future Starts Here <br />
@@ -189,7 +189,7 @@ const Banner = () => {
 
 
             {/* Fifth Slide */}
-<div className="container mx-auto flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-green-50 via-teal-100 to-green-50  gap-8 relative">
+<div className=" flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-green-50 via-teal-100 to-green-50  gap-8 relative">
     <div className="text-center md:text-left max-w-md animate-slideIn">
         <p className="text-4xl md:text-5xl text-[#111827] font-extrabold leading-tight mb-4">
             The World Needs You <br />
@@ -220,7 +220,7 @@ const Banner = () => {
 
                 
                 {/* Sixth Slide */}
-<div className="container mx-auto flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-green-50 via-teal-100 to-green-50  gap-8 relative">
+<div className=" flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-green-50 via-teal-100 to-green-50  gap-8 relative">
     <div className="text-center md:text-left max-w-md animate-slideIn">
         <p className="text-4xl md:text-5xl text-[#111827] font-extrabold leading-tight mb-4">
           Your Dream <br />
