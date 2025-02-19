@@ -147,7 +147,7 @@ const OverviewPage = () => {
           </div>
 
           {/* All Users */}
-          <div className="rounded-lg text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-3 flex items-center space-x-4 w-[280px] lg:w-full">
+          <div className="rounded-lg text-white bg-gradient-to-r from-indigo-500  to-custom1 p-3 flex items-center space-x-4 w-[280px] lg:w-full">
             <FaUsers className="text-4xl" />
             <div>
               <div className="text-lg">All Users</div>
@@ -157,7 +157,7 @@ const OverviewPage = () => {
           </div>
 
           {/* All Applications */}
-          <div className="rounded-lg text-white bg-gradient-to-r from-red-500 to-emerald-500 p-6 flex items-center space-x-4 w-[280px] lg:w-full">
+          <div className="rounded-lg text-white bg-gradient-to-r from-indigo-500 to-emerald-500 p-6 flex items-center space-x-4 w-[280px] lg:w-full">
             <FaNoteSticky className="text-4xl" />
             <div>
               <div className="text-lg">All Applications</div>
@@ -177,7 +177,7 @@ const OverviewPage = () => {
           </div>
 
           {/* All Scholarships */}
-          <div className="h-48 rounded-lg text-white bg-gradient-to-r from-indigo-500 via-pink-500 to-red-500 p-6 flex items-center space-x-4 w-[280px] lg:w-full">
+          <div className="h-48 rounded-lg text-white bg-gradient-to-r from-indigo-500 to-custom1  p-6 flex items-center space-x-4 w-[280px] lg:w-full">
             <FaEdit className="text-4xl" />
             <div>
               <div className="text-lg">All Scholarship Posts</div>

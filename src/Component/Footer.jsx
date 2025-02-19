@@ -12,7 +12,7 @@ const Footer = () => {
               alt=""
               className="w-16 h-16 rounded-full border-2 border-white shadow-lg"
             />
-            <h2 className="text-2xl uppercase font-extrabold tracking-wide text-primary">
+            <h2 className="text-2xl uppercase font-extrabold tracking-wide text-custom1">
               Scholar
             </h2>
           </div>
@@ -55,30 +55,30 @@ const Footer = () => {
 
         {/* Services */}
         <div>
-          <h3 className="text-lg font-semibold mb-4 text-primary">Our Services:</h3>
+          <h3 className="text-lg font-semibold mb-4 text-custom1">Our Services:</h3>
           <ul className="space-y-3 text-sm text-gray-400">
             <li>
-              <a href="#" className="hover:text-primary transition duration-300">
+              <a href="#" className="hover:text-custom1 transition duration-300">
                 Web Development
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-primary transition duration-300">
+              <a href="#" className="hover:text-custom1 transition duration-300">
                 UI/UX Design
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-primary transition duration-300">
+              <a href="#" className="hover:text-custom1 transition duration-300">
                 Management
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-primary transition duration-300">
+              <a href="#" className="hover:text-custom1 transition duration-300">
                 Digital Marketing
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-primary transition duration-300">
+              <a href="#" className="hover:text-custom1 transition duration-300">
                 Blog News
               </a>
             </li>
@@ -87,7 +87,7 @@ const Footer = () => {
 
         {/* Email Subscription */}
         <div>
-          <h3 className="text-lg font-semibold mb-4 text-primary">Subscribe to our Newsletter:</h3>
+          <h3 className="text-lg font-semibold mb-4 text-custom1">Subscribe to our Newsletter:</h3>
           <form className="flex flex-col space-y-4">
             <input
               type="email"
@@ -105,7 +105,7 @@ const Footer = () => {
 
         {/* Gallery */}
         <div>
-          <h3 className="text-lg font-semibold mb-4 text-primary">Gallery:</h3>
+          <h3 className="text-lg font-semibold mb-4 text-custom1">Gallery:</h3>
           <div className="grid grid-cols-3 gap-2">
             <img
               src="https://i.ibb.co.com/zs2hnKZ/Fully-funded-opportunity-for-students-with-Manaaki-Scholarship-in-New-Zealand.jpg"
@@ -143,9 +143,9 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="mt-10 text-center border-t border-gray-700 pt-4">
-        <p className="text-sm text-gray-400">
+        <p className="text-sm ">
           Copyright © 2025{" "}
-          <span className="text-primary uppercase font-bold">Scholar</span> | All Rights Reserved
+          <span className="text-custom1 uppercase font-bold">Scholar</span> | All Rights Reserved
         </p>
       </div>
     </footer>

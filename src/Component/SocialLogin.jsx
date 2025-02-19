@@ -31,7 +31,7 @@ const handleGoogleSignIn=()=>{
         <div>
            <button
           onClick={handleGoogleSignIn}
-          className="flex items-center justify-center p-2 shadow-sm bg-white btn w-full mt-5 ml-10"
+          className="flex items-center justify-center p-2 shadow-sm bg-white btn w-full mt-5 "
         >
           <img className='w-6 h-6 mr-2 ' src="https://i.ibb.co.com/k9sCr1Z/Logo-google-icon-PNG.png" alt="" />
           <span className="text-gray-600 font-medium">Log in with Google</span>

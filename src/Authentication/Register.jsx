@@ -10,7 +10,8 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import useAxiosPublic from '../Hooks/axiosPublic';
 import SocialLogin from '../Component/SocialLogin';
-
+import Lottie from "lottie-react";
+import lottie from '../../src/assets/lottie.json'
 
 
 
@@ -64,14 +65,19 @@ axiosPublic.post('https://b10a12-server-side-one.vercel.app/users',userInfo)
         
        </Helmet>
  <div>
-<div className="hero bg-base-200 min-h-screen">
+<div className="hero bg-base-200 min-h-screen w-full">
   <div className="hero-content flex-col lg:flex-row-reverse">
     <div className="text-center lg:text-left">
-      <h1 className="text-5xl font-bold">Sign Up Now ! </h1>
-      <p className="py-6">
-        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-        quasi. In deleniti eaque aut repudiandae et a id nisi.
-      </p>
+      <h1 className="text-5xl font-bold">Register Now ! </h1>
+     
+      <Lottie
+  animationData={lottie}
+  loop={true}
+  autoplay={true}
+  style={{ width: "100%", height: "auto", maxWidth: "400px" }}
+/>
+
+ 
     </div>
     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
       <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -142,7 +148,7 @@ axiosPublic.post('https://b10a12-server-side-one.vercel.app/users',userInfo)
 
         </div>
         <p className='ml-14'><small>All Ready Have An Account<Link
-       to="/login"><span className='text-red-600 underline ml-2'>Sign In</span></Link></small></p>
+       to="/login"><span className='text-red-600 underline '>Log In</span></Link></small></p>
 
        <SocialLogin></SocialLogin>
       </form>
