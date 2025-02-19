@@ -26,7 +26,7 @@ const HomeScholarships = () => {
       <SectionTitle subHeading="New Features" heading="Our new scholarship"></SectionTitle>
       {loading ? (
      <div className='text-center '>
-        <span className="w-96 h-96 loading loading-spinner text-accent"></span>
+        <span className="w-20 h-20 loading loading-spinner text-accent"></span>
      </div>
       ) : (
         <>

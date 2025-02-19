@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
+
 const Navbar2 = () => {
   const { loading, user, signOutUser } = useContext(AuthContext);
   const [scrolled, setScrolled] = useState(false);
@@ -51,7 +52,7 @@ const Navbar2 = () => {
 </NavLink>
      
       <NavLink
-   to="/dashboard/cartBoard"
+   to="/dashboard/overviewPage"
    className={({ isActive }) =>
     `hover:text-custom1  rounded-xl  hover:translate-y-1  p-3 transition mx-4 border-b-4 border-custom1 ${
       isActive ? "text-custom1  " : ""
@@ -60,25 +61,26 @@ const Navbar2 = () => {
 >
 Dashboard
 </NavLink>
-<NavLink
-   to="/dashboard/cartBoard"
+      <NavLink
+   to="/login"
    className={({ isActive }) =>
     `hover:text-custom1  rounded-xl  hover:translate-y-1  p-3 transition mx-4 border-b-4 border-custom1 ${
       isActive ? "text-custom1  " : ""
     }`
   }
 >
-Profile
+Login
 </NavLink>
+
 <NavLink
-   to="/dashboard/cartBoard"
+   to="/contact"
    className={({ isActive }) =>
     `hover:text-custom1  rounded-xl  hover:translate-y-1  p-3 transition mx-4 border-b-4 border-custom1 ${
       isActive ? "text-custom1  " : ""
     }`
   }
 >
-Contact
+About Us
 </NavLink>
     </>
   );
@@ -143,7 +145,7 @@ Contact
           ) : user ? (
             <div className="flex items-center justify-end lg:space-x-4">
               {/* Ensure the image is displayed only if photoURL is valid */}
-              {user.photoURL ? (
+              {user.photoURL? (
                 <img
                   src={user.photoURL}
                   alt="User Profile"

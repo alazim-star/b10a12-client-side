@@ -45,6 +45,9 @@ import Payment from './Payment/Payment';
 import ModeratorRoutes from './Pages/DashBoard/Modaretor/ModeratorRoutes';
 import CartBoard from './Pages/DashBoard/CartBoard';
 import PaymentHistory from './Payment/PaymentHistory';
+import Profile from './Pages/Profile';
+import AboutUs from './Pages/AboutUs';
+import OverviewPage from './Pages/OverviewPage';
 
 
 
@@ -69,6 +72,11 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      
+      {
+        path: "/contact",
+        element: <AboutUs></AboutUs>,
       },
       {
         path: "/allScholarship",
@@ -98,9 +106,18 @@ const router = createBrowserRouter([
         children:[
 
           
+          // {
+          //   path: "cartBoard",
+          //   element: <CartBoard></CartBoard>,
+          // },
+          
           {
-            path: "cartBoard",
-            element: <CartBoard></CartBoard>,
+            path: "overviewPage",
+            element: <OverviewPage></OverviewPage>,
+          },
+          {
+            path: "profile",
+            element: <Profile></Profile>,
           },
          
 // user dashboard 

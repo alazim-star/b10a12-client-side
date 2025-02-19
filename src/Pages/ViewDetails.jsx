@@ -8,6 +8,7 @@ import Rating from 'react-rating';
 import { FaStar } from 'react-icons/fa';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import Marquee from 'react-fast-marquee';
+import { VscGitStashApply } from 'react-icons/vsc';
 
 const ViewDetails = () => {
   const scholarship = useLoaderData();
@@ -138,7 +139,7 @@ const ViewDetails = () => {
   return (
     <div>
       {/* Other content remains unchanged */}
-<div className='lg:flex'>
+<div className='lg:flex container mx-auto '>
   
       {/* Reviews Section */}
       <div className="text-white rounded-xl shadow-md p-6 mt-8 w-[400px] h-[400px] bg-gradient-to-r from-blue-500 to-teal-500 ">
@@ -148,11 +149,11 @@ const ViewDetails = () => {
             <div key={index} className="border p-4 rounded-lg shadow-sm mb-4">
               <div className="flex justify-between items-center">
                 <h4 className="font-semibold">{review.username}</h4>
-                <p className="text-sm text-gray-500">{new Date(review?.timestamp).toLocaleString()}</p>
+                <p className="text-sm ">{new Date(review?.timestamp).toLocaleString()}</p>
               </div>
-              <p className="text-gray-600 mt-2"><strong>Scholarship:</strong> {review?.scholarshipName}</p>
-              <p className="text-gray-600 mt-2">{review?.comment}</p>
-              <p className="text-gray-600 mt-2">{review?.photoURL}</p>
+              <p className="mt-2"><strong>Scholarship:</strong> {review?.scholarshipName}</p>
+              <p className="mt-2">{review?.comment}</p>
+              <p className="mt-2">{review?.photoURL}</p>
             </div>
           ))
         ) : (
@@ -218,9 +219,9 @@ const ViewDetails = () => {
           </div>
         </div>
       )}
-      <div className="bg-red-50 flex justify-center items-center min-h-screen ">
-      <div className="p-6 bg-white rounded-xl shadow-xl flex flex-col space-y-6">
-        <div className='flex justify-between bg-red-50 p-5 rounded-xl'>
+      <div className=" flex justify-center items-center min-h-screen ">
+      <div className="p-6  rounded-xl shadow-xl flex flex-col space-y-6">
+        <div className='flex justify-between bg-gradient-to-r from-blue-500 to-teal-500 p-5 rounded-xl text-white'>
           <div>
             <h2 className="text-3xl font-bold">{scholarship?.universityName}</h2>
             <div className='flex gap-2'>
@@ -233,25 +234,42 @@ const ViewDetails = () => {
               <p>Review</p>
             </div>
           </div>
-          <p className='text-2xl'><strong>Application Fees:</strong>{scholarship?.applicationFees}</p>
+          <p className='text-2xl'><strong>Tuition Fees :</strong> {scholarship?.tuitionFees}</p>
         </div>
 
         {/* Scholarship Details Card */}
-        <div className="bg-white rounded-xl shadow-md p-6 space-y-4 md:space-y-0">
+        <div className=" rounded-xl shadow-md p-6 space-y-4 md:space-y-0">
           <img
             src={scholarship?.universityLogo}
-            alt={scholarship?.applicationFees}
-            className="object-cover border-2 border-gray-300 rounded-lg w-full h-[400px]"
+            alt={scholarship?.tuitionFees}
+            className="object-cover border-2 border-gray-300 rounded-lg w-full h-[400px] mb-5"
           />
-          <div>
-            <p className="text-gray-600 text-sm">Service Charge: {scholarship?.details?.serviceCharge}</p>
+          <div className=''>
+       <div className='flex justify-around'>
+       <div>
+           <p className=
+            ""><strong>Service Charge: </strong>{scholarship?.serviceCharge}</p>
+            <p className=" "><><strong>Scholarship Name:</strong></> {scholarship?.scholarshipName}</p>
             <p><strong>Scholarship Category:</strong> {scholarship?.scholarshipCategory}</p>
             <p><strong>Subject Category:</strong> {scholarship?.subjectCategory}</p>
-            <p><strong>Stipend:</strong> {scholarship?.details?.stipend}</p>
-            <p><strong>Post Date:</strong> {scholarship?.details?.postDate}</p>
+            <p><strong>Scholarship Post Date:</strong> {scholarship?.scholarshipPostDate}</p>
             <p><strong>Application Deadline:</strong> {scholarship?.applicationDeadline}</p>
+           </div>
+           <div>
+           <p><strong>University Country:</strong> {scholarship?.universityCountry}</p>
+            <p><strong>University City:</strong> {scholarship?.universityCity}</p>
+            <p><strong>University WorldRank:</strong> {scholarship?.universityWorldRank}</p>
+            <p><strong>Degree:</strong> {scholarship?.degree}</p>
+            <p><strong>Application Fees:</strong> {scholarship?.applicationFees}</p>
+            
+           </div>
+            
+       </div>
+
+         
+           
             <div className="mt-4">
-              <p><strong>Description:</strong> {scholarship?.details?.scholarshipDescription}</p>
+            
             </div>
             <div className="flex justify-between space-x-4 mt-6">
               <Link to="/allScholarship">
@@ -259,15 +277,25 @@ const ViewDetails = () => {
                   See All Scholarships   
                 </button>
               </Link>
-              <button
-        onClick={() => setIsModalOpen(true)}
-        className="group relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg bg-gradient-to-br from-green-400 to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+
+
+             
+
+        <button onClick={() => setIsModalOpen(true)} className="group relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg bg-gradient-to-br from-green-400 to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
             <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                 <span className="flex items-center gap-2">
-                    <i className="fas fa-graduation-cap"></i> Apply Now
+                <VscGitStashApply /> Apply Now
                 </span>
             </span>
         </button>
+
+
+
+
+
+
+
+
             </div>
           </div>
         
@@ -439,14 +467,14 @@ const ViewDetails = () => {
 </div>
 
       {/* Marquee for all reviews */}
-      <div className="container mx-auto px-4">
+      <div className="">
         <section className="my-20">
           {reviewss.length > 0 ? (
             <Marquee pauseOnHover speed={50}>
               {reviewss.map((review) => (
                 <div
                   key={review._id}
-                  className="flex flex-col items-center mx-8 p-6 bg-gradient-to-r from-teal-400 via-blue-500 to-purple-600 shadow-lg rounded-lg max-w-xs transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  className="flex flex-col items-center mx-8 p-6 bg-gradient-to-r from-blue-500 to-teal-500 shadow-lg rounded-lg max-w-xs transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
                 >
                   <img
                     className="w-20 h-20 rounded-full mb-4"

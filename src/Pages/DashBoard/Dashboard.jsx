@@ -17,7 +17,7 @@ const Dashboard = () => {
     <div className="flex">
       {/* Sidebar */}
       <div className="text-white min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 w-64 shadow-lg">
-        <div className="p-6 text-center text-2xl font-bold">
+        <div className="lg:p-6 text-center text-2xl font-bold">
           <h2>Dashboard</h2>
         </div>
         <ul  className="menu p-2">
@@ -119,31 +119,68 @@ const Dashboard = () => {
 
           {/* Shared Menu */}
           <div className="divider text-lg font-bold text-gray-300 mt-4">All Menu</div>
-          <li className="p-2 hover:bg-teal-700 transition-all duration-300 rounded-lg">
-            <NavLink to="/">
-              <FaHome /> Home
-            </NavLink>
-          </li>
-          <li className="p-2 hover:bg-teal-700 transition-all duration-300 rounded-lg">
-            <NavLink to="/allScholarship">
-              <HiDocumentDuplicate /> All Scholarships
-            </NavLink>
-          </li>
-          <li className="p-2 hover:bg-teal-700 transition-all duration-300 rounded-lg">
-            <NavLink to="/dashboard">
-              <MdOutlineDashboard /> Dashboard
-            </NavLink>
-          </li>
-          <li className="p-2 hover:bg-blue-700 transition-all duration-300 rounded-lg">
+          <NavLink
+                 to="/"
+                 className={({ isActive }) =>
+                  `hover:text-custom1  rounded-xl  hover:translate-y-1  p-3 transition mx-4 border-b-4 border-custom1 ${
+                    isActive ? "text-custom1  " : ""
+                  }`
+                }
+              >
+Home
+              </NavLink>
+          <NavLink
+                 to="/allScholarship"
+                 className={({ isActive }) =>
+                  `hover:text-custom1  rounded-xl  hover:translate-y-1  p-3 transition mx-4 border-b-4 border-custom1 ${
+                    isActive ? "text-custom1  " : ""
+                  }`
+                }
+              >
+All Scholarship
+              </NavLink>
+          <NavLink
+                 to="/dashboard"
+                 className={({ isActive }) =>
+                  `hover:text-custom1  rounded-xl  hover:translate-y-1  p-3 transition mx-4 border-b-4 border-custom1 ${
+                    isActive ? "text-custom1  " : ""
+                  }`
+                }
+              >
+Dashboard
+              </NavLink>
+          {/* <li className="p-2 hover:bg-blue-700 transition-all duration-300 rounded-lg">
                 <NavLink to="/dashboard/cartBoard">
                   <MdOutlineRateReview /> Cart Board
                 </NavLink>
-              </li>
+              </li> */}
+              
+                    <NavLink
+                 to="/dashboard/profile"
+                 className={({ isActive }) =>
+                  `hover:text-custom1  rounded-xl  hover:translate-y-1  p-3 transition mx-4 border-b-4 border-custom1 ${
+                    isActive ? "text-custom1  " : ""
+                  }`
+                }
+              >
+       Profile
+              </NavLink>
+         
+              <NavLink
+                 to="/dashboard/overviewPage"
+                 className={({ isActive }) =>
+                  `hover:text-custom1  rounded-xl  hover:translate-y-1  p-3 transition mx-4 border-b-4 border-custom1 ${
+                    isActive ? "text-custom1  " : ""
+                  }`
+                }
+              >
+Overview 
+              </NavLink>
         </ul>
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-8 bg-gray-50">
+      <div className="flex-1 lg:p-8 p-2 bg-gray-50 ">
         <Outlet />
       </div>
     </div>

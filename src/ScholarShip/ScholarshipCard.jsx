@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { FaDollarSign } from "react-icons/fa";
 
 
-const ScholarshipCard = ({ scholarship, applications = [], setFilteredApplications }) => {
+const ScholarshipCard = ({ scholarship }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -19,11 +20,11 @@ const ScholarshipCard = ({ scholarship, applications = [], setFilteredApplicatio
     <div className=" mt-4">
    
       {/* Scholarship Card */}
-      <div className="border   shadow-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-3xl rounded-tl-[150px] rounded-br-[150px] lg:w-full w-[450px] ">
+      <div className="border   shadow-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-3xl rounded-tl-[150px] rounded-br-[150px] lg:w-full w-[440px] ">
         {/* Scholarship Logo */}
         <div className="relative">
           <img
-            className="w-full h-52  object-cover "
+            className="w-full h-48  object-cover "
             src={scholarship?.universityLogo || "default-logo.png"}
             alt={scholarship?.universityName || "University Logo"}
           />
@@ -35,17 +36,23 @@ const ScholarshipCard = ({ scholarship, applications = [], setFilteredApplicatio
         {/* Scholarship Details */}
         <div className="p-2">
           <h3 className="text-2xl font-bold text-gray-800">
-            {scholarship?.scholarshipCategory || "Category not available"}
+            {scholarship?.
+degree || "Category not available"}
           </h3>
           <ul className="text-sm text-gray-600 space-y-2">
-            <li>
+  
+   <li>
               <span className="font-semibold">🎓 Category:</span> {scholarship?.scholarshipCategory || "N/A"}
             </li>
+            
             <li>
               <span className="font-semibold">🏛️ University:</span> {scholarship?.universityName || "N/A"}
             </li>
             <li>
-              <span className="font-semibold">📍 Location:</span> {scholarship?.universityLocation || "N/A"}
+              <span className="font-semibold">📍  Location:</span> {scholarship?.universityCountry || "N/A"}
+            </li>
+            <li className="flex items-center"><FaDollarSign />
+              <span className="font-semibold "> Tuition Fees: $ </span> {scholarship?.tuitionFees || "N/A"}
             </li>
             <li>
               <span className="font-semibold">📚 Subject:</span> {scholarship?.subjectCategory || "N/A"}
