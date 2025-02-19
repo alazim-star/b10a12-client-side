@@ -1,7 +1,7 @@
 
 # 🚀 Scholarship Management Web Application
 
-![Scholarship Management](https://i.ibb.co.com/LhsFBp5B/ac.jpg)  
+![Scholarship Management](https://i.ibb.co.com/20jgvRWZ/1.jpg)  
 The Scholarship Management Web Application provides a user-friendly interface to view, apply, and manage scholarships. Users can also give reviews, get detailed scholarship information, and register/login to access specific features.
 
 ## 📌 Features
