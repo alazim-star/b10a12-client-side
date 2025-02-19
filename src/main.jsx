@@ -97,12 +97,16 @@ const router = createBrowserRouter([
         path: "/checkOut",
         element: <CheckOutFrom></CheckOutFrom>,
       },
+      {
+        path: "/profile",
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>,
+      },
 
       {
         path: "dashboard",
-        element: <PrivateRoute>
-          <Dashboard></Dashboard>
-        </PrivateRoute>,
+        element: 
+          <Dashboard></Dashboard>,
+  
         children:[
 
           
@@ -113,11 +117,13 @@ const router = createBrowserRouter([
           
           {
             path: "overviewPage",
-            element: <OverviewPage></OverviewPage>,
+            element: 
+              <OverviewPage></OverviewPage>,
+           
           },
           {
             path: "profile",
-            element: <Profile></Profile>,
+            element: <PrivateRoute><Profile></Profile></PrivateRoute>,
           },
          
 // user dashboard 

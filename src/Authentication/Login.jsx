@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import axios from 'axios';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { Helmet } from 'react-helmet-async';
+import SocialLogin from '../Component/SocialLogin';
 // import { LoadCanvasTemplate, validateCaptcha, loadCaptchaEnginge } from 'react-simple-captcha';
 
 const Login = () => {
@@ -84,15 +85,15 @@ const Login = () => {
     }
   };
 
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then(() => {
-        navigate('/');
-      })
-      .catch((error) => {
-        toast.error(`Google Sign-In failed: ${error.message}`, { position: 'top-right', autoClose: 3000 });
-      });
-  };
+  // const handleGoogleSignIn = () => {
+  //   signInWithGoogle()
+  //     .then(() => {
+  //       navigate('/');
+  //     })
+  //     .catch((error) => {
+  //       toast.error(`Google Sign-In failed: ${error.message}`, { position: 'top-right', autoClose: 3000 });
+  //     });
+  // };
 
   // const handleValidateCaptcha = (e) => {
   //   const userCaptchaValue = e.target.value;
@@ -176,10 +177,11 @@ const Login = () => {
           <p className="text-center font-semibold mt-3">
             Don’t Have An Account? <Link className="text-red-500 underline" to="/register">Register</Link>
           </p>
-          <button onClick={handleGoogleSignIn} className="flex items-center justify-center p-2 shadow-sm btn w-full mt-5 bg-white">
+          {/* <button onClick={handleGoogleSignIn} className="flex items-center justify-center p-2 shadow-sm btn w-full mt-5 bg-white">
             <img className="w-6 h-6 mr-2" src="https://i.ibb.co/k9sCr1Z/Logo-google-icon-PNG.png" alt="Google Logo" />
             <span className="text-gray-600 font-medium">Log in with Google</span>
-          </button>
+          </button> */}
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </>

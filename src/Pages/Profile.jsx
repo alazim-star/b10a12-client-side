@@ -28,9 +28,7 @@ const ProfilePage = () => {
             Hello,{profileDetails?.name} 👋
           </h1>
           <p className="mt-2">Manage your projects and profile here</p>
-          <button className="mt-4 px-5 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition">
-            Edit Profile
-          </button>
+         
         </div>
       </div>
 
@@ -50,16 +48,10 @@ const ProfilePage = () => {
           <h2 className="text-2xl font-semibold mt-4 text-gray-800">
             {profileDetails.name || "User Name"}
           </h2>
+          <p>    {profileDetails.role || "User Name"}</p>
           <p className="text-gray-500">Solution Manager - Creative Tim</p>
           <p className="text-gray-500">University of Computer Science</p>
-          <div className="mt-4 flex justify-center gap-4">
-            <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition">
-              Connect
-            </button>
-            <button className="px-4 py-2 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition">
-              Message
-            </button>
-          </div>
+        
         </div>
 
         {/* Account Details */}

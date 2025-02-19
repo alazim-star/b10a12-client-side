@@ -50,7 +50,8 @@ const Navbar2 = () => {
 >
  All Scholarship
 </NavLink>
-     
+{user && (
+      <>
       <NavLink
    to="/dashboard/overviewPage"
    className={({ isActive }) =>
@@ -61,16 +62,24 @@ const Navbar2 = () => {
 >
 Dashboard
 </NavLink>
+
+</>
+    )}
+{user && (
+      <>
       <NavLink
-   to="/login"
+   to="/profile"
    className={({ isActive }) =>
     `hover:text-custom1  rounded-xl  hover:translate-y-1  p-3 transition mx-4 border-b-4 border-custom1 ${
       isActive ? "text-custom1  " : ""
     }`
   }
 >
-Login
+Profile
 </NavLink>
+
+</>
+    )}
 
 <NavLink
    to="/contact"

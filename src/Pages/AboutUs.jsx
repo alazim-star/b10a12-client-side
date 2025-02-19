@@ -2,10 +2,10 @@ import React from 'react';
 
 const AboutUs= () => {
   return (
-    <div className="bg-gray-900 text-white">
+    <div className="bg-custom1 text-white">
       {/* Hero Section */}
       <section className="relative  pb-16">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900  clip-path-wave"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 clip-path-wave"></div>
         <div className="container mx-auto px-6 lg:px-20 py-20 lg:py-32 relative z-10 flex flex-col lg:flex-row items-center">
           {/* Left Content */}
           <div className="lg:w-1/2 text-center lg:text-left">
@@ -15,7 +15,7 @@ const AboutUs= () => {
             <p className="text-gray-300 mb-6">
             I am a passionate front-end developer with a strong eye for design and a love for crafting user-friendly, responsive, and interactive web applications  to help your business thrive in a competitive market.
             </p>
-            <button className="btn btn-primary">More Information</button>
+            
           </div>
 
           {/* Right Image */}
@@ -41,7 +41,7 @@ const AboutUs= () => {
             {/* Card 1 */}
             <div className="p-6 bg-gray-100 rounded-lg shadow-md hover:shadow-lg text-center">
               <div className="flex justify-center items-center mb-4">
-                <div className="bg-[#23085a] p-4 rounded-full">
+                <div className="bg-custom1 p-4 rounded-full">
                   <svg
                     className="w-8 h-8 text-white"
                     fill="none"
@@ -67,7 +67,7 @@ const AboutUs= () => {
             {/* Card 2 */}
             <div className="p-6 bg-gray-100 rounded-lg shadow-md hover:shadow-lg text-center">
               <div className="flex justify-center items-center mb-4">
-                <div className="bg-[#23085a] p-4 rounded-full">
+                <div className="bg-custom1 p-4 rounded-full">
                   <svg
                     className="w-8 h-8 text-white"
                     fill="none"
@@ -93,7 +93,7 @@ const AboutUs= () => {
             {/* Card 3 */}
             <div className="p-6 bg-gray-100 rounded-lg shadow-md hover:shadow-lg text-center">
               <div className="flex justify-center items-center mb-4">
-                <div className="bg-[#23085a] p-4 rounded-full">
+                <div className="bg-custom1 p-4 rounded-full">
                   <svg
                     className="w-8 h-8 text-white"
                     fill="none"

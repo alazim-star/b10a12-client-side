@@ -106,36 +106,36 @@ const Footer = () => {
         {/* Gallery */}
         <div>
           <h3 className="text-lg font-semibold mb-4 text-custom1">Gallery:</h3>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid lg:grid-cols-3 grid-cols-1 gap-2">
             <img
               src="https://i.ibb.co.com/zs2hnKZ/Fully-funded-opportunity-for-students-with-Manaaki-Scholarship-in-New-Zealand.jpg"
               alt="Gallery"
-              className="w-full h-20 object-cover rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg"
+              className="w-full lg:h-20 object-cover rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg"
             />
             <img
               src="https://i.ibb.co.com/cXGC5j9/group-young-students-front-school-building.jpg"
               alt="Gallery"
-              className="w-full h-20 object-cover rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg"
+              className="w-full lg:h-20 object-cover rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg"
             />
             <img
               src="https://i.ibb.co.com/3RqJDmv/young-people-looking-victorious.jpg"
               alt="Gallery"
-              className="w-full h-20 object-cover rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg"
+              className="w-full lg:h-20 object-cover rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg"
             />
             <img
               src="https://i.ibb.co.com/5xgCnxt/360-F-535738048-p-Xb7j-VYzqpx8a-Yb9r-Kmb0uyfy-AKqa-Njb.jpg"
               alt="Gallery"
-              className="w-full h-20 object-cover rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg"
+              className="w-full lg:h-20 object-cover rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg"
             />
             <img
               src="https://i.ibb.co.com/Khygb9D/images-3.jpg"
               alt="Gallery"
-              className="w-full h-20 object-cover rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg"
+              className="w-full lg:h-20 object-cover rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg"
             />
             <img
               src="https://i.ibb.co.com/wKnJWNq/boys-girls-graduation.jpg"
               alt="Gallery"
-              className="w-full h-20 object-cover rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg"
+              className="w-full lg:h-20 object-cover rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg"
             />
           </div>
         </div>
