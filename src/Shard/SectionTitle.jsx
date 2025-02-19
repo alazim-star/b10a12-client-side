@@ -6,7 +6,7 @@ const SectionTitle = ({ subHeading, heading }) => {
       {/* Subheading */}
       <p className="text-sm text-yellow-500 italic mb-2">{subHeading}</p>
       {/* Heading */}
-      <h2 className="uppercase text-3xl text-neutral border-y-4 py-4  ">{heading}</h2>
+      <h2 className="uppercase text-custom1 text-3xl border-y-4 py-4  ">{heading}</h2>
     </div>
   );
 };

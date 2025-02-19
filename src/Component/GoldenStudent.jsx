@@ -1,4 +1,5 @@
 import React from 'react';
+import SectionTitle from '../Shard/SectionTitle';
 
 const GoldenStudent = () => {
     const images = [
@@ -32,7 +33,8 @@ const GoldenStudent = () => {
 
     return (
         <div className="container mx-auto my-10 px-4">
-            <h1 className="text-center text-4xl font-bold mb-8 ">Our Achievement</h1>
+           
+            <SectionTitle heading="Our Achievement"></SectionTitle>
             <div className="grid grid-cols-4  gap-6">
                 {images.map((image, index) => (
                     <div

@@ -35,11 +35,11 @@ const ScholarshipCard = ({ scholarship }) => {
 
         {/* Scholarship Details */}
         <div className="p-2">
-          <h3 className="text-2xl font-bold text-gray-800">
+          <h3 className="text-2xl font-bold ">
             {scholarship?.
 degree || "Category not available"}
           </h3>
-          <ul className="text-sm text-gray-600 space-y-2">
+          <ul className="text-sm  space-y-2">
   
    <li>
               <span className="font-semibold">🎓 Category:</span> {scholarship?.scholarshipCategory || "N/A"}

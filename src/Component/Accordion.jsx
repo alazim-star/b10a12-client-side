@@ -4,7 +4,7 @@ import SectionTitle from '../Shard/SectionTitle';
 const Accordion = () => {
     return (
         <div>
-            <SectionTitle heading="Frequently Asked Questions" />
+            <SectionTitle subHeading='Ask question' heading="Frequently Asked Questions" />
             <div className="lg:ml-32 join join-vertical w-11/12 md:w-3/4 mx-auto mb-20 p-4 bg-gradient-to-r from-blue-50 to-teal-50 rounded-lg shadow-lg">
                 {/* Accordion Item 1 */}
                 <div className="collapse collapse-arrow join-item border border-teal-200 rounded-lg overflow-hidden shadow-sm">

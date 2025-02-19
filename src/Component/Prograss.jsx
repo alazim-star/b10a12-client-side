@@ -1,10 +1,13 @@
 import React from 'react';
 import moment from 'moment';
+import SectionTitle from '../Shard/SectionTitle';
 
 const Prograss = () => {
     return ( 
 
-    <div className='bg-gradient-to-r from-blue-500 to-teal-500'>
+        <div>
+            <SectionTitle subHeading="client are happy with us" heading="Our progress"></SectionTitle>
+                <div className='mt-10 bg-gradient-to-r from-blue-500 to-teal-500'>
         <div className='container mx-auto lg:flex md:flex  items-center justify-center lg:gap-20 md:gap-5 '>
             <h3 className='animate__animated animate__backInUp text-white mt-10 mb-10 text-5xl ml-10 font-extrabold cursor-pointer'>The Best Way To <br /> <span className='text-[#111827]'>Get Higher Studies</span></h3>
             <div className="stats stats-vertical shadow lg:w-96 md:w-full w-80  mb-20 md:ml-5 text-center lg:mt-10">
@@ -66,6 +69,7 @@ const Prograss = () => {
 
 
 
+        </div>
         </div>
         </div>
     );

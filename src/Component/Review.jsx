@@ -17,7 +17,7 @@ const Review = () => {
   return (
     <div className="container mx-auto px-4">
       <section className="my-20">
-        <SectionTitle heading="Our Client Reviews" />
+        <SectionTitle heading="Our Client Reviews" subHeading="people say about us" />
 
         {reviews.length > 0 ? (
           <Marquee pauseOnHover speed={50}>

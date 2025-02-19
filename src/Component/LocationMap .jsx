@@ -1,5 +1,6 @@
 import React from "react";
 import { Map, Marker } from "pigeon-maps";
+import SectionTitle from "../Shard/SectionTitle";
 
 const LocationMap = () => {
   // Example university locations with coordinates and names
@@ -14,8 +15,8 @@ const LocationMap = () => {
   return (
     <div className="p-4 container mx-auto">
       <address className="text-center text-lg font-semibold mb-4">
-        <p className="text-3xl font-bold mb-5">University Locations</p>
-       Scholarship universities around the world
+      
+       <SectionTitle subHeading=" Scholarship universities around the world" heading="University Locations"></SectionTitle>
       </address>
       <div className="w-full h-[450px]">
         <Map

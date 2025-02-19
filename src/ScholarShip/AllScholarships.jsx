@@ -87,7 +87,7 @@ const AllScholarships = () => {
       <SectionTitle heading="All Scholarships" />
 
       {/* Sticky Search Bar */}
-      <div className="sticky  top-0 bg-white z-10 shadow-sm p-4 container mx-auto">
+      <div className="sticky  top-0  z-10 shadow-sm p-4 container mx-auto">
         <div className="flex flex-wrap gap-2 justify-center">
           {/* Search Input */}
           <input
