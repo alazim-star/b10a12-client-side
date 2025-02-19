@@ -24,7 +24,7 @@ const Review = () => {
             {reviews.map((review) => (
               <div
                 key={review._id}
-                className="flex flex-col items-center mx-8 p-6 bg-gradient-to-r from-teal-400 via-blue-500 to-purple-600 shadow-lg rounded-lg max-w-xs transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                className="flex flex-col items-center mx-8 p-6 bg-gradient-to-r from-blue-500 to-teal-500 shadow-lg rounded-lg max-w-xs transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
                 <img
                   className="w-20 h-20 rounded-full mb-4 border-4 border-white transform transition-all duration-300 hover:scale-110"

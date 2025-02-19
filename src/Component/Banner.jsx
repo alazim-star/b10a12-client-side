@@ -6,7 +6,7 @@ const Banner = () => {
 
     
     return (
-        <div className="">
+        <div className=" bg-gradient-to-br from-white via-gray-50 to-gray-100 ">
             <Carousel 
                 autoPlay
                 infiniteLoop
@@ -17,9 +17,9 @@ const Banner = () => {
             >
               {/* First Slide */}
 
-<div className="relative flex flex-col md:flex-row justify-center items-center  bg-gradient-to-br from-white via-gray-50 to-gray-100 p-10 gap-8 overflow-hidden">
+<div className=" relative flex flex-col md:flex-row justify-center items-center  bg-gradient-to-br from-white via-gray-50 to-gray-100  gap-8 overflow-hidden container mx-auto ">
     {/* Text Content */}
-    <div className="text-center md:text-left max-w-md z-10 ">
+    <div className="text-center md:text-left max-w-md z-10  ">
         <p className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
             Unlock Your Potential <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-green-400">
@@ -41,7 +41,7 @@ const Banner = () => {
     <div className="relative group">
         {/* Image */}
         <img
-            className="w-full max-w-screen-xl  rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
+            className="w-full max-w-screen-xl  shadow-lg transform group-hover:scale-105 transition-transform duration-300"
             src="https://i.ibb.co/dBs35xf/shutterstock-183400235.png"
             alt="Scholarship"
         />
@@ -66,7 +66,7 @@ const Banner = () => {
 
 
 {/* Second Slide */}
-<div className="relative flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-blue-50 via-white to-teal-50 p-10 gap-8 overflow-hidden">
+<div className="container mx-auto relative flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-blue-50 via-white to-teal-50  gap-8 overflow-hidden">
     <div className="text-center md:text-left max-w-md z-10">
         <p className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
             Shape Your Future <br />
@@ -88,7 +88,7 @@ const Banner = () => {
     {/* Image Content */}
     <div className="relative group">
         <img
-            className="w-full max-w-screen-xl rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
+            className="w-full max-w-screen-xl  shadow-lg transform group-hover:scale-105 transition-transform duration-300"
             src="https://i.ibb.co/fXczpD1/Fully-funded-opportunity-for-students-with-Manaaki-Scholarship-in-New-Zealand.jpg"
             alt="Scholarship"
         />
@@ -114,7 +114,7 @@ const Banner = () => {
 
 
               {/* Third Slide */}
-<div className="relative flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-green-50 to-blue-50 p-10 gap-8 overflow-hidden">
+<div className="container mx-auto relative flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-green-50 to-blue-50  gap-8 overflow-hidden">
     <div className="text-center md:text-left max-w-md z-10">
         <p className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
             Dream Big, Achieve Bigger <br />
@@ -136,7 +136,7 @@ const Banner = () => {
     </div>
     <div className="relative group">
         <img
-            className="w-full max-w-screen-xl  rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
+            className="w-full max-w-screen-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
             src="https://i.ibb.co/tYRTGcv/classmates-writing-learning-study-session-23-2149265745.jpg"
             alt="Scholarship"
         />
@@ -153,7 +153,7 @@ const Banner = () => {
 </div>
 
     {/* Fourth Slide */}
-<div className="relative flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-blue-50 via-indigo-100 to-purple-50 p-10 gap-8 overflow-hidden">
+<div className="container mx-auto relative flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-blue-50 via-indigo-100 to-purple-50  gap-8 overflow-hidden">
     <div className="text-center md:text-left max-w-md z-10">
         <p className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
             Your Future Starts Here <br />
@@ -171,7 +171,7 @@ const Banner = () => {
     </div>
     <div className="relative group">
         <img
-            className="w-full max-w-screen-xl  rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
+            className="w-full max-w-screen-xl  shadow-lg transform group-hover:scale-105 transition-transform duration-300"
             src="https://i.ibb.co/D9qXkRD/look-code.jpg"
             alt="Scholarship"
         />
@@ -189,7 +189,7 @@ const Banner = () => {
 
 
             {/* Fifth Slide */}
-<div className="flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-green-50 via-teal-100 to-green-50 p-10 gap-8 relative">
+<div className="container mx-auto flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-green-50 via-teal-100 to-green-50  gap-8 relative">
     <div className="text-center md:text-left max-w-md animate-slideIn">
         <p className="text-4xl md:text-5xl text-[#111827] font-extrabold leading-tight mb-4">
             The World Needs You <br />
@@ -205,7 +205,7 @@ const Banner = () => {
     </div>
     <div className="relative group">
         <img
-            className="w-full max-w-screen-xl  rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
+            className="w-full max-w-screen-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
             src="https://i.ibb.co/yhbyVcM/group-young-students-front-school-building.jpg"
             alt="Scholarship"
         />
@@ -220,7 +220,7 @@ const Banner = () => {
 
                 
                 {/* Sixth Slide */}
-<div className="flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-green-50 via-teal-100 to-green-50 p-10 gap-8 relative">
+<div className="container mx-auto flex flex-col md:flex-row justify-center items-center bg-gradient-to-r from-green-50 via-teal-100 to-green-50  gap-8 relative">
     <div className="text-center md:text-left max-w-md animate-slideIn">
         <p className="text-4xl md:text-5xl text-[#111827] font-extrabold leading-tight mb-4">
           Your Dream <br />
@@ -236,7 +236,7 @@ const Banner = () => {
     </div>
     <div className="relative group">
         <img
-            className="w-full max-w-screen-xl rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300"
+            className="w-full max-w-screen-xl  shadow-lg transform group-hover:scale-105 transition-transform duration-300"
             src="https://i.ibb.co/9Z4nhgg/young-people-looking-victorious.jpg"
             alt="Scholarship"
         />

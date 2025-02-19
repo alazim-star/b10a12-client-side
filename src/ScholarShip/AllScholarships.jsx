@@ -97,10 +97,10 @@ const AllScholarships = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button className="btn bg-green-600 text-white" onClick={handleSearch}>
+          <button className="hover:bg-[#0ab99d] hover:scale-105 hover:shadow-lg transition-all p-4 rounded-lg border-b-4 border-[#0ab99d] bg-[#111827] text-white font-semibold"onClick={handleSearch}>
             Search
           </button>
-          <button className="btn bg-green-600 text-white" onClick={handleReset}>
+          <button  className="hover:text-custom1 hover:bg-[#111827] rounded-xl hover:translate-y-1 bg-custom1 p-3  transition border-b-4 border-custom1" onClick={handleReset}>
             Reset
           </button>
         </div>
