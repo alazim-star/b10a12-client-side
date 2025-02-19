@@ -92,7 +92,7 @@ const Dashboard = () => {
             </>
           )}
 
-          {/* Regular User Menu */}
+          {/* all User Menu */}
           {!isAdmin && !isModerator && (
             <>
               <div className="divider text-lg font-bold text-gray-300 mt-4">User</div>
